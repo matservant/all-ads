@@ -1,0 +1,31 @@
+/*
+ * 	CSS-Styles
+ *	Project: YOC YAP - Microsoft Office 2010 (2011)
+ * 	Author: Bjoern Hampe
+ * 	Copyright: 2011 YOC Group AG
+ *
+ * 	INIT
+ */
+
+* { z-index:2; }
+html { -webkit-text-size-adjust: none; }
+body {
+	margin: 0; padding: 0;
+	color: #4d5d68;
+	background-color: #fff;
+	font-family: Arial,Helvetica,sans-serif;
+}
+
+#viewport {
+	position: absolute; left: 0; top: 0;
+	width: 320px; height:416px;
+	display: none;
+	overflow: hidden;
+	background-color: #fff;
+}
+.hideme {
+	opacity: 0;
+	z-index: 1 !important;
+	-webkit-transform-style: flat; -webkit-transition: all 200ms linear; -webkit-transform: translateX(0);
+}
+.page {opacity:0;}

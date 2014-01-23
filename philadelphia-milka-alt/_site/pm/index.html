@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Philadelphia Milka</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="user-scalable=no, width=300" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<style type="text/css">
+/* CSS */
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: nokia-pure-text, arial, sans-serif;
+	color: white;
+	font-weight: 300;
+	height: 100px;
+	min-height: 100px;
+	width: 300px;
+	background-color: black;
+}
+
+#knife {
+	width: 185px;
+	position: absolute;
+	top: -32px;
+	left: 60px;
+}
+
+#video {
+	width: 340px;
+	height: 200px;
+	position: absolute;
+	top: -30px;
+	left: -20px;
+}
+
+.frame {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 300px;
+}
+
+.frame img {
+	width: 100%;
+}
+
+.scene {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 300px;
+	height: 100px;
+	overflow: hidden;
+	-webkit-transition: opacity 0.5s ease-in-out;
+}
+
+#scene-2 {
+	background-color: white;
+	opacity: 0;
+}
+
+#scene-2 p {
+	color: blue;
+	width: 200px;
+	margin-left: 60px;
+	text-align: center;
+	font-size: 18px;
+}
+
+.little {
+	width: 70px;
+	position: absolute;
+	top: 25px;
+	left: 11px;
+	z-index: 1000;
+	opacity: 0.8;
+}
+
+#scene-3 {
+	display: none;
+	opacity: 0;
+}
+
+#scene-1 img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	-webkit-transition: opacity 1s ease-in-out;
+}
+
+#pic-2 {
+	opacity: 0;
+}
+
+#pic-3 {
+	opacity: 0;
+}
+
+#cta {
+	width: 198px;
+	position: absolute;
+	top: 21px;
+	right: 10px;
+}
+
+@-webkit-keyframes shake-right-arrow {
+	50% { -webkit-transform: translate(-10px, 0); }
+	100% { -webkit-transform: translate(0, 0); }
+}
+
+#scene-4 {
+	-webkit-transition: opacity 1s ease-in-out;
+	display: none;
+	background-color: white;
+	opacity: 0;
+}
+
+#jetzt {
+	display: block;
+	margin-top: 21px;
+	margin-left: 94px;
+	width: 184px;
+}
+
+#right-arrow {
+	-webkit-animation: shake-right-arrow 1s ease-out 0s;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-iteration-count: infinite;
+	position: absolute;
+	left: 50px;
+	top: 5px;
+	font-size: 30px;
+}
+	</style>
+</head>
+<body id="ad">		
+	<div id="scene-1" class="scene">
+		<div id="movie"></div>
+	</div>
+
+	<div id="scene-2" class="scene">
+		<img id="cta" src="assets/cta.png" alt="Streichzart mit Philadelphia Milka jetzt ausprobieren!"/>
+	</div>
+	<div id="scene-3" class="scene">
+		<img id="bread" class="scene" src="assets/bread.jpg">
+		<div id="extend-frames">
+
+		</div>
+		<img id="knife" src="assets/knife2.png">
+		<p id="right-arrow">→</p>
+	</div>
+	<img id="logo" src="assets/little.png" class="little"/>
+	<a id="scene-4" class="scene" href="http://bit.ly/ZFe92j" target="_blank">
+		<img id="jetzt" src="assets/jetzt.png"/>
+	</a>
+
+	<script>
+// JS
+/*jslint browser: true, devel: true*/
+
+var YOC = {};
+
+YOC.view = function (spec, my) {
+  'use strict';
+
+  var that = {},
+    el = document.getElementById(spec.id),
+    subviews = [],
+    target = spec.target;
+
+  my = my || {};
+
+  that.set_hidden = function (should_hide) {
+    if (should_hide) {
+      el.style.display = 'none';
+    } else {
+      el.style.display = 'block';
+    }
+  };
+
+  that.set_transparent = function (should_be_transparent) {
+    if (should_be_transparent) {
+      el.style.opacity = 0;
+    } else {
+      el.style.opacity = 1;
+    }
+  };
+
+  that.add_subview = function (view) {
+    subviews.push(view);
+  };
+
+  that.get_el = function () {
+    return el;
+  };
+
+  that.get_subviews = function () {
+    return subviews;
+  };
+
+  that.set_target = function (t) {
+    target = t;
+  };
+
+  that.get_target = function (t) {
+    return target;
+  };
+
+  that.add_event = function (event, action) {
+    el.addEventListener(event, target[action](event));
+  };
+
+  return that;
+};
+
+YOC.movieView = function (spec, my) {
+  'use strict';
+
+  var that = YOC.view(spec, my),
+
+    pad = function (num, size) {
+      var s = "000" + num;
+      return s.substr(s.length - size);
+    },
+
+    showFrame = function (frame, delay, total) {
+      setTimeout(function () {
+        frame.style.display = 'block';
+
+        if (that.get_el().lastChild === frame && that.get_target() && that.get_target().hasOwnProperty('movie_did_finish')) {
+          that.get_target().movie_did_finish(that);
+        }
+      }, delay);
+    },
+
+    backward = function () {
+      var i, frames = that.get_el().children;
+      for (i = 41; i > 0; i = i - 1) {
+        if (frames[i].style.display === 'block') {
+          frames[i].style.display = 'none';
+          break;
+        }
+      }
+    },
+
+    forward = function () {
+      var i, frames = that.get_el().children;
+      for (i = 0; i < frames.length; i = i + 1) {
+        if (frames[i].style.display === 'none') {
+          frames[i].style.display = 'block';
+          break;
+        }
+      }
+    },
+
+    rewind = function () {
+      var i, frames = this.get_el().children;
+      for (i = 0; i < frames.length; i = i + 1) {
+        frames[i].style.display = 'none';
+      }
+
+      frames[0].style.display = 'block';
+    },
+
+    load = function (spec) {
+      var i, img, firstChild;
+
+      for (i = 0; i <= spec.frames; i = i + 1) {
+        img = document.createElement('img');
+
+        if (spec.pad && typeof spec.pad === 'number') {
+          img.src = 'assets/' + spec.prefix + pad(i, spec.pad) + '.jpg';
+        } else {
+          img.src = 'assets/' + spec.prefix + i + '.jpg';
+        }
+
+        img.id = 'frame-' + i;
+        img.className = 'frame';
+        img.style.display = 'none';
+        that.get_el().appendChild(img);
+      }
+
+      firstChild = that.get_el().firstChild;
+      while (firstChild !== null && firstChild.nodeType === 3) {
+        firstChild = firstChild.nextSibling;
+      }
+      firstChild.style.display = 'block';
+    },
+
+    play = function () {
+      var i,
+        frames = that.get_el().children;
+
+      for (i = 0; i < frames.length; i = i + 1) {
+        showFrame(frames[i], i * 50, frames.length);
+      }
+    };
+
+  that.load = load;
+  that.play = play;
+  that.forward = forward;
+  that.backward = backward;
+  that.rewind = rewind;
+
+  return that;
+};
+
+YOC.draggableView = function (spec, my) {
+  var that = YOC.view(spec, my),
+    touchmove = function (event) {
+      var x = event.touches[0].clientX,
+        target = that.get_target();
+
+      if (that.get_el().id === 'knife') {
+        that.get_el().style.left = x - 70 + 'px';
+      }
+
+      if (target && target.hasOwnProperty('draggable_view_did_drag')) {
+        target.draggable_view_did_drag(that, event);
+      }
+    },
+
+    touchstart = function (event) {
+      var target = that.get_target();
+      if (target && target.hasOwnProperty('draggable_view_will_drag')) {
+        target.draggable_view_will_drag(that, event);
+      }
+    };
+
+  that.get_el().addEventListener('touchmove', touchmove);
+  that.get_el().addEventListener('touchstart', touchstart);
+  return that;
+};
+
+YOC.viewController = function (spec, my) {
+  'use strict';
+
+  var that = {},
+    outlets = {},
+
+    add_outlet = function (spec) {
+      outlets[spec.name] = spec.dest;
+    },
+
+    get_outlets = function () {
+      return outlets;
+    };
+
+  my = my || {};
+
+  that.add_outlet = add_outlet;
+  that.get_outlets = get_outlets;
+
+  return that;
+};
+/*jslint browser: true, devel: true*/
+/*global YOC*/
+
+var PM = {};
+
+PM.viewController = function (spec, my) {
+  'use strict';
+
+  var that = YOC.viewController(spec, my),
+
+    loadExternalPage = function () {
+      window.open('http://bit.ly/ZFe92j');
+    },
+
+    show_jetzt_clicken = function () {
+      that.get_outlets().logo.set_hidden(false);
+      document.getElementById('scene-4').style.display = 'block';
+      document.getElementById('scene-4').style.opacity = 0.7;
+    },
+
+    did_click_cta = function (event) {
+      return function (event) {
+        that.get_outlets().sceneThree.set_hidden(false);
+        that.get_outlets().sceneThree.set_transparent(false);
+        that.get_outlets().cta.set_hidden(true);
+        that.get_outlets().logo.set_hidden(true);
+      };
+    },
+
+    movie_did_finish = function (movie) {
+      if (movie.get_el().id === 'movie') {
+        that.get_outlets().sceneTwo.set_transparent(false);
+      }
+    },
+
+    prevX = 0,
+
+    draggable_view_did_drag = function (view, event) {
+      var x = view.get_el().offsetLeft || parseInt(view.get_el().style.left, 10);
+
+      if (x >= 113) {
+        that.get_outlets().extendView.set_hidden(false);
+        view.set_transparent(true);
+
+        if (x > that.prevX) {
+          that.get_outlets().extendView.forward();
+        } else {
+          that.get_outlets().extendView.backward();
+        }
+      } else {
+        view.set_transparent(false);
+        that.get_outlets().extendView.set_hidden(true);
+        that.get_outlets().extendView.rewind();
+      }
+
+      that.prevX = x;
+    },
+
+    draggable_view_will_drag = function (view, event) {
+      that.get_outlets().arrow.set_hidden(true);
+      setTimeout(show_jetzt_clicken, 4000);
+    },
+
+    draggable_view_should_drag = function (view, event) {
+      return true;
+    },
+
+    view_did_load = function () {
+      that.get_outlets().extendView.set_hidden(true);
+      that.get_outlets().movie.play();
+    };
+
+  my = my || {};
+
+  that.view_did_load = view_did_load;
+  that.did_click_cta = did_click_cta;
+  that.movie_did_finish = movie_did_finish;
+  that.draggable_view_did_drag = draggable_view_did_drag;
+  that.draggable_view_will_drag = draggable_view_will_drag;
+  that.loadExternalPage = loadExternalPage;
+
+  return that;
+};
+
+window.onload = function () {
+  'use strict';
+
+  var viewController = PM.viewController(),
+    adView = YOC.view({id: 'ad', target: viewController}),
+    logoView = YOC.view({id: 'logo', target: viewController}),
+    ctaView = YOC.view({id: 'cta', target: viewController}),
+    sceneTwoView = YOC.view({id: 'scene-2', target: viewController}),
+    sceneThreeView = YOC.view({id: 'scene-3', target: viewController}),
+    knifeView = YOC.draggableView({id: 'knife', target: viewController}),
+    extendView = YOC.movieView({id: 'extend-frames', target: viewController}),
+    arrowView = YOC.movieView({id: 'right-arrow', target: viewController}),
+    movie = YOC.movieView({id: 'movie', target: viewController}),
+
+    prevent_scroll = function () {
+      document.addEventListener('touchmove', function () {
+        event.preventDefault();
+      });
+    };
+
+  movie.load({prefix: 'movie', frames: 103, pad: 3});
+  extendView.load({prefix: 'extend', frames: 41});
+
+  ctaView.add_event('click', 'did_click_cta');
+
+  viewController.add_outlet({name: 'movie', dest: movie});
+  viewController.add_outlet({name: 'cta', dest: ctaView});
+  viewController.add_outlet({name: 'logo', dest: logoView});
+  viewController.add_outlet({name: 'sceneTwo', dest: sceneTwoView});
+  viewController.add_outlet({name: 'sceneThree', dest: sceneThreeView});
+  viewController.add_outlet({name: 'knife', dest: knifeView});
+  viewController.add_outlet({name: 'extendView', dest: extendView});
+  viewController.add_outlet({name: 'arrow', dest: arrowView});
+
+  viewController.view_did_load();
+
+  prevent_scroll();
+};	</script>
+</body>

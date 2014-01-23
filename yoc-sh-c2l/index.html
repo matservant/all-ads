@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Shell</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="user-scalable=no, width=320" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<style type="text/css">
+		html {
+			height: 100%;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+			color: red;
+			font-weight: 300;
+			height: 100%;
+			min-height: 416px;
+			width: 320px;
+		}
+
+		#banner {
+			background-image:url('img/first.jpg');
+			background-size: 320px 578px;
+			background-position: top;
+			height: 100%;
+			min-height: 416px;
+		}
+
+		#call {
+			position: absolute;
+			top: 360px;
+			right: 10px;
+			width: 180px;
+		}
+	</style>
+</head>
+<body>
+	<div id="banner"></div>
+	<script>
+		/*jslint browser: true, devel: true*/
+
+		function hideAddressBar() {
+			'use strict';
+
+			setTimeout(function () {
+				window.scrollTo(0, 1);
+			}, 100);
+		}
+
+		document.getElementById('banner').addEventListener('click', function () {
+			'use strict';
+			var img = document.createElement('img');
+			img.src = 'http://ad-emea.doubleclick.net/ad/N8084.283666.YOC-MOBILE-ADVERTIS/B7153570;sz=1x1;ord=[timestamp]?';
+			img.style.display = 'none';
+			document.body.appendChild(img);
+			window.open('http://bit.ly/yoc-sh-c2l');
+		});
+
+		window.onload = hideAddressBar;
+	</script>
+</body>

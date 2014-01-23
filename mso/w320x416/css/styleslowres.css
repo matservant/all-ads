@@ -1,0 +1,18 @@
+/*
+ * 	CSS-Styles
+ *	Project: YOC YAP - Microsoft Office 2010 (2011)
+ * 	Author: Bjoern Hampe
+ * 	Copyright: 2011 YOC Group AG
+ *
+ * 	LOW RES VERSION
+ */
+
+/* Global Styles */
+
+#slide1 { background-image:url(images/lowres/bg_slide1.jpg); }
+#slide2 { background-image:url(images/lowres/bg_slide2.jpg); }
+#slide3 { background-image:url(images/lowres/bg_slide3.jpg); }
+
+#moreinfo { background:url(images/lowres/button.png); }
+.pageActive { background:url(images/lowres/dot_on.png); }
+.pageInactive { background:url(images/lowres/dot_off.png); }

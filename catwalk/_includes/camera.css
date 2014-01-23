@@ -1,0 +1,207 @@
+@-webkit-keyframes swing {
+        0% { -webkit-transform: translate3d(0,   0px,0); 
+             -webkit-animation-timing-function: ease-out; }
+       50% { -webkit-transform: translate3d(-20px, 0 ,0); 
+             -webkit-animation-timing-function: ease-in; }
+      100% { -webkit-transform: translate3d(0,   0px,0); }
+}
+
+.spinner {
+   height: 60px;
+   width: 60px;
+   margin: 0 auto;
+   position: absolute;
+   -webkit-animation: rotation .6s infinite linear;
+   animation: rotation .6s infinite linear;
+   border:6px solid white;
+   border-radius:100%;
+   top: 50%;
+   left: 32%;
+   margin-top: -30px;
+   opacity: 0;
+}
+
+.spinner:before {
+   content:"";
+   display:block;
+   position:absolute;
+   left:-6px;
+   top:-6px;
+   height:100%;
+   width:100%;
+   border-top:6px solid #4fbdbe;
+   border-left:6px solid transparent;
+   border-bottom:6px solid transparent;
+   border-right:6px solid transparent;
+   border-radius:100%;
+}
+
+@-webkit-keyframes rotation {
+   from {-webkit-transform: rotate(0deg);}
+   to {-webkit-transform: rotate(359deg);}
+}
+
+@keyframes rotation {
+   from {transform: rotate(0deg);}
+   to {transform: rotate(359deg);}
+}
+
+body {
+	margin: 0;
+	overflow: hidden;
+	height: 100%;
+	min-height: 560px;
+	background-color: #4fbdbe;
+}
+
+#container {
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+}
+
+#picture-wrapper {
+	width: 96%;
+	height: 80%;
+	margin: 0 auto;
+	left: 1%;
+	position: absolute;
+	top: 10%;
+	opacity: 1;
+	-webkit-transition: opacity 0.5s linear;
+	overflow: hidden;
+}
+
+#picture {
+	width: 100%;
+	-webkit-transform: scale(1.2);
+}
+
+#twitter {
+	width: 32px;
+	float: right;
+	margin: 3px;
+	-webkit-transition: opacity 0.5s linear;
+}
+
+#facebook {
+	width: 32px;
+	float: right;
+	margin: 3px;
+	-webkit-transition: opacity 0.5s linear;
+}
+
+#wandele {
+	width: 62%;
+	float: left;
+	margin-top: 7px;
+	margin-left: -20px;
+	-webkit-transition: all 1s linear 1s;
+	opacity: 0;
+	display: none;
+	-webkit-animation: swing 1s infinite;
+}
+
+#brightness {
+	width: 32px;
+	float: right;
+	margin: 3px;
+	-webkit-transition: opacity 0.5s linear;
+}
+
+#camera-button-wrapper {
+	width: 102.5px;
+	float: left;
+	position: relative;
+}
+
+#camera-input {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	height: 44px;
+	opacity: 0;
+}
+
+img.camera {
+	pointer-events: none;
+	width: 100%;
+	position: absolute;
+	top: 0;
+}
+
+#image-placeholder {
+	border-radius: 15px;
+	border: white solid 2px;
+	width: 60%;
+	margin: 2% auto;
+	-webkit-transition: all 0.2s linear;
+	position: relative;
+	overflow: auto;
+}
+
+img.mache {
+	position: absolute;
+	top: 0;
+	margin: 5%;
+	width: 90%;
+}
+
+#buttons {
+	width: 62%;
+	height: 44px;
+	margin: 0 auto;
+	position: relative;
+}
+
+#phone-vert {
+	position: absolute;
+	top: 0;
+	-webkit-transition: all 0.2s linear;
+	opacity: 0;
+	width: 100%;
+ }
+
+#wrapper {
+	display: table;
+	width: 100%;
+}
+
+#cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#phantom {
+	float: left;
+}
+
+#phantom-phone-vert {
+	opacity: 0;
+	float: left;
+	width: 100%;
+}
+
+img.windows {
+	position: absolute;
+	bottom: -3%;
+	margin: 5%;
+	width: 90%;
+}
+
+img.microsoft {
+	position: absolute;
+	top: 3%;
+	right: 3%;
+	width: 11%;
+}
+
+#buttons img.windows {
+	position: absolute;
+	top: 4px;
+	width: 60%;
+	-webkit-transition: all 1s linear 1s;
+	margin: 0;
+	opacity: 0;
+	display: none;
+}

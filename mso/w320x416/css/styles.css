@@ -1,0 +1,29 @@
+/*
+ * 	CSS-Styles
+ *	Project: YOC YAP - Microsoft Office 2010 (2011)
+ * 	Author: Bjoern Hampe
+ * 	Copyright: 2011 YOC Group AG
+ */
+
+/* Global Styles */
+
+.page {
+	position:absolute; left:0px; width:320px; height:416px;
+	-webkit-transition: all 250ms ease;
+	background-position:0; background-repeat:no-repeat; background-size:320px;
+}
+
+#moreinfo { display: block; width:159px; height:27px; background-size:159px; position:absolute; top:315px; margin-left:80px; }
+
+.clearFloat{ clear:both; }
+
+/*** page slider **************************************************************/
+
+#sliderContainer { -webkit-transform-style: flat; -webkit-transition: all 100ms linear; -webkit-transform: translate(0); }
+.verticalSlider { width:320px; }
+	.verticalSlider ul.slider { position:absolute; width:320px; height:416px; padding:0px; margin:0px; }
+		.verticalSlider li.slide { float:left; width:320px; height:416px; list-style: none; padding:0px; margin:0px; }
+.sliderControls { position:absolute; bottom:0px; text-align:center; width:320px; height:30px; }
+.slide { background-position:0; background-repeat:no-repeat; background-size:320px; }
+.pageActive { background-position:0; background-repeat:no-repeat; background-size:6px; width:6px; height:6px; margin-right:10px; margin-top:8px; float:left; }
+.pageInactive { background-position:0; background-repeat:no-repeat; background-size:6px; width:6px; height:6px; margin-right:10px; margin-top:8px; float:left; }

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Shell</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="user-scalable=no, width=320" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<style type="text/css">
+		html {
+			height: 100%;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+			min-height: 416px;
+		}
+
+		#map_canvas {
+			height: 100%;
+			width: 320px;
+			top: 0;
+			min-height: 416px;
+		}
+
+		#form {
+			position: absolute;
+			height: 60px;
+			top: 6px;
+			left: 5px;
+		}
+
+		input {
+			border: none;
+			font-size: 20px;
+			width: 168px;
+		}
+
+		input:focus{
+			outline: none;
+		}
+		#submit-button {
+			display: none;
+		}
+
+		#frame {
+			background-image:url('img/banner.jpg');
+			background-size: 320px 50px;
+			position: absolute;
+			top: 0;
+			width: 320px;
+			height: 50px;
+			display: none;
+		}
+	</style>
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDhq8eTc5zfRiSYGuKAq2r5jvX66t8p_hg&sensor=true&libraries=geometry"></script>
+</head>
+<body>
+	<div id="map_canvas"></div>
+	<div id="frame">
+		<form id="form">
+		<input id="zip" type="number" name="zip" placeholder="PLZ eingeben..."/>
+		<input type="button" id="submit-button"/>
+	</form>
+	</div>
+	<script src="data.js"></script>
+	<script>
+		/*jslint browser: true, devel: true*/
+
+		var	map,
+			infoWindow = new google.maps.InfoWindow(),
+			directionsDisplay,
+			directionsService = new google.maps.DirectionsService();
+
+		function setDistances(shops, currentPosition) {
+			'use strict';
+			var i, shop, shopPosition;
+			for (i = 0; i < shellShops.length; i += 1) {
+				shop = shellShops[i];
+				shop.position = new google.maps.LatLng(shop.location.Lat, shop.location.Lng);
+				shop.distance = google.maps.geometry.spherical.computeDistanceBetween(currentPosition, shop.position);
+			}
+		}
+
+		function drawRoute(origin, destination) {
+			'use strict';
+
+			directionsDisplay.setMap(map);
+
+			var	request = {
+					origin: origin,
+					destination: destination,
+					travelMode: google.maps.TravelMode.DRIVING
+				};
+
+			directionsService.route(request, function (result, status) {
+				if (status === google.maps.DirectionsStatus.OK) {
+					directionsDisplay.setDirections(result);
+				}
+			});
+		}
+
+		function drawMapForPosition(position) {
+			'use strict';
+			var dist,
+				markers = [],
+				you = new google.maps.Marker({
+					position: position,
+					map: map,
+					title: 'You are here',
+					animation: google.maps.Animation.DROP,
+					icon: {
+						path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+						scale: 4
+					}
+				}),
+				minDist = 9999999999999999999999999999999,
+				i,
+				marker,
+				height = window.innerWidth,
+				width = window.innerHeight,
+				shop,
+				shopPosition,
+				Xne,
+				Yne,
+				Xsw,
+				Ysw,
+				ne,
+				sw;
+
+			map = new google.maps.Map(document.getElementById('map_canvas'), {
+				zoom: 7,
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				center: position,
+				disableDefaultUI: true
+			});
+
+			directionsDisplay = new google.maps.DirectionsRenderer();
+
+			setDistances(shellShops, position);
+
+			shellShops.sort(function (a, b) {
+				return a.distance - b.distance;
+			});
+
+			for (i = 0; i < 300; i += 1) {
+				shop = shellShops[i];
+
+				if (shop.isShell) {
+					marker = new google.maps.Marker({
+						position: shop.position,
+						map: map,
+						title: shop.Name,
+						info: shop,
+						icon: 'img/shell.png'
+					});
+				} else {
+					marker = new google.maps.Marker({
+						position: shop.position,
+						map: map,
+						title: shop.Name,
+						info: shop
+					});
+				}
+
+				google.maps.event.addListener(marker, 'click', function () {
+					console.log(this);
+					var banner = '<p>' + this.info.name + '<br\/>' + this.info.address + '<br\/>' + this.info.ZIP + ' ' + this.info.city + '<\/p>';
+					infoWindow.setContent(banner);
+					infoWindow.open(map, this);
+
+					drawRoute(position, this.position);
+				});
+				markers.push(marker);
+			}
+
+			drawRoute(position, markers[0].position);
+			shop = shellShops[5];
+
+			Xne = (shop.location.Lat < position.lat()) ? shop.location.Lat : position.lat();
+			Yne = (shop.location.Lng < position.lng()) ? shop.location.Lng : position.lng();
+
+			Xsw = (shop.location.Lat > position.lat()) ? shop.location.Lat : position.lat();
+			Ysw = (shop.location.Lng > position.lng()) ? shop.location.Lng : position.lng();
+
+			ne = new google.maps.LatLng(Xne, Yne);
+			sw = new google.maps.LatLng(Xsw, Ysw);
+
+			map.fitBounds(new google.maps.LatLngBounds(ne, sw));
+		}
+
+		function didEnterZIPCode(event) {
+			'use strict';
+			event.preventDefault();
+			var	input = document.getElementById('zip'),
+				geocoder = new google.maps.Geocoder(),
+				req = {
+					address: input.value + ' Germany',
+					region: 'de'
+				},
+				loc;
+
+			if (!input.value) {
+				alert('Ungültige Postleitzahl');
+				return;
+			}
+
+			geocoder.geocode(req, function (results, status) {
+				if (status !== 'OK' || results.length > 1) {
+					alert('Postleitzahl nicht gefunden');
+					return;
+				}
+
+				document.getElementById('frame').style.display = "none";
+				input.blur();
+				loc = results[0].geometry.location;
+				drawMapForPosition(loc);
+			});
+		}
+
+		function didGetCurrentPosition(currentPosition) {
+			'use strict';
+			var position = new google.maps.LatLng(currentPosition.coords.latitude, currentPosition.coords.longitude);
+			drawMapForPosition(position);
+		}
+
+		function didNotGetCurrentPosition(error) {
+			'use strict';
+			document.getElementById('form').addEventListener("submit", didEnterZIPCode);
+			document.getElementById('submit-button').addEventListener('click', didEnterZIPCode);
+			document.getElementById('frame').style.display = "block";
+			var position = new google.maps.LatLng(52.521750, 13.413168);
+			drawMapForPosition(position);
+		}
+
+		function initialize() {
+			'use strict';
+
+			console.log('here');
+
+			if (typeof (navigator.geolocation) !== 'undefined' && typeof (navigator.geolocation.getCurrentPosition) !== 'undefined') {
+				navigator.geolocation.getCurrentPosition(didGetCurrentPosition, didNotGetCurrentPosition);
+			}
+		}
+
+		window.onload = initialize;
+	</script>
+</body>
+</html>

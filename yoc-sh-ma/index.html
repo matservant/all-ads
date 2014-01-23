@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Shell</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="user-scalable=no, width=320" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<style type="text/css">
+		@-webkit-keyframes shake-arrow {
+			50% { -webkit-transform: translate(0, 10px); }
+			100% { -webkit-transform: translate(0, 0); }
+		}
+
+		html {
+			height: 100%;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+			color: red;
+			font-weight: 300;
+			height: 100%;
+			min-height: 416px;
+			width: 320px;
+		}
+
+		#arrow {
+			position: absolute;
+			top: 30px;
+			left: 50px;
+			width: 220px;
+			height: 210px;
+			background-size: 220px;
+			background-image: url('img/pfeil.png');
+			background-repeat: no-repeat;
+			text-align: center;
+			-webkit-transition: all 500ms ease-out 0;
+			-webkit-animation: shake-arrow 1s ease-out 0s;
+			-webkit-animation-fill-mode: forwards;
+			-webkit-animation-iteration-count: infinite;
+		}
+
+		#eines {
+			position: absolute;
+			width: 140px;
+			top: 135px;
+			left: 40px;
+			-webkit-transition: opacity 500ms ease-out 0;
+		}
+
+		#kanister {
+			position: absolute;
+			top: 110px;
+			width: 120px;
+			left: 50px;
+			opacity: 0;
+			-webkit-transition: opacity 500ms ease-out 0;
+		}
+
+		#helix {
+			width: 70px;
+			margin-top: 10px;
+		}
+
+		#car {
+			width: 250px;
+			position: absolute;
+			top: 220px;
+			left: 40px;
+		}
+
+		#scene-1 {
+			text-align: center;
+			-webkit-transition: opacity 500ms ease-out 0;
+		}
+
+		#scene-2 {
+			position: absolute;
+			background-color: black;
+			background-image: url('img/BG_crystal_car.jpg');
+			background-position: center;
+			background-repeat: no-repeat;
+			top: 0;
+			height: 568px;
+			width: 100%;
+			background-size: 480px;
+			padding-top: 60px;
+			opacity: 0;
+			-webkit-transition: opacity 500ms ease-out 0;
+			-webkit-perspective: 1000;
+			-webkit-backface-visibility: hidden;
+		}
+
+		.logo {
+			position: absolute;
+			right: 10px;
+			top: 0;
+			width: 50px;
+		}
+
+		#wodas {
+			position: absolute;
+			top: 100px;
+			width: 250px;
+			left: 10px;
+		}
+
+		#ihrauto {
+			position: absolute;
+			top: 118px;
+			width: 295px;
+			left: 10px;
+		}
+
+		#scene-3 {
+			position: absolute;
+			background-image: url('img/BG_Produkt_Helix.jpg');
+			background-position: center;
+			background-repeat: no-repeat;
+			top: 0;
+			height: 568px;
+			width: 100%;
+			background-size: 320px 100%;
+			padding-top: 60px;
+			opacity: 0;
+			-webkit-perspective: 1000;
+			-webkit-backface-visibility: hidden;
+		}
+
+		#spiegelung {
+			position: absolute;
+			top: 0;
+			width: 320px;
+		}
+
+		a {
+			position: absolute;
+			width: 320px;
+			height: 568px;
+			top: 0;
+			display: none;
+		}
+	</style>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-36395195-1']);
+		_gaq.push(['_setDomainName', 'mystery-ad-yoc.com']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+</head>
+<body>
+	<div id="scene-3">
+		<img id="ihrauto" src="img/youtube2.png"/>
+		<img class="logo" src="img/shell_logo-fs8.png"/>
+		<img id="spiegelung" src="img/HELIX_spiegelung-fs8.png"/>
+	</div>
+	<div id="scene-2">
+		<img class="logo" src="img/shell_logo-fs8.png"/>
+		<img id="wodas" src="img/wo_das_herz_ihres_autos-fs8.png"/>
+	</div>
+	<div id="scene-1">
+		<div id="arrow">
+			<img id="helix" src="img/Helix_Ultra_5W-30_39L_2-fs8.png"/>
+			<br/>
+			<img id="eines" src="img/eines_sollte_ihnen_klar_sein-fs8.png">
+			<img id="kanister" src="img/Kanister_mit_Finger-fs8.png"/>
+		</div>
+		<img id="car" src="img/auto_frei_audi_02-fs8.png"/>
+	</div>
+	<a id="link" href="http://bit.ly/yoc-sh-ma" target="_blank"></a>
+	<script>
+		/*jslint browser: true, devel: true*/
+
+		function animate() {
+			'use strict';
+			document.getElementsByTagName('a')[0].style.display = 'block';
+			document.getElementById('arrow').style.top = '600px';
+			document.getElementById('scene-1').style.opacity = 0;
+			document.getElementById('scene-2').style.opacity = 1;
+
+			setTimeout(function () {
+				document.getElementById('scene-3').style.opacity = 1;
+				document.getElementById('scene-2').style.opacity = 0;
+			}, 5000);
+		}
+
+		document.getElementById('arrow').addEventListener('touchmove', function () {
+      'use strict';
+      _gaq.push(['_trackEvent', 'Action', 'Moved Down', 'Arrow', 0]);
+			animate();
+		});
+
+		function hideAddressBar() {
+			'use strict';
+
+			setTimeout(function () {
+				window.scrollTo(0, 1);
+			}, 100);
+		}
+
+		document.addEventListener('touchmove', function () {
+			'use strict';
+			event.preventDefault();
+		});
+
+		setTimeout(function () {
+			document.getElementById('eines').style.opacity = 0;
+			document.getElementById('kanister').style.opacity = 1;
+		}, 3000);
+
+		window.onload = hideAddressBar;
+	</script>
+</body>

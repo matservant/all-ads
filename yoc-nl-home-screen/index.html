@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Nokia Lumia 920</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="user-scalable=no, width=320" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<style type="text/css">
+		html {
+			height: 100%;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+			color: red;
+			height: 100%;
+			font-weight: 300;
+			min-height: 532px;
+			width: 320px;
+		}
+
+		#background {
+			background-color: black;
+			height: 100%;
+			opacity: 0;
+			min-height: 532px;
+			-webkit-transition: opacity 1s ease-out 1100ms;
+			height: 100%;
+		}
+
+		.button {
+			background-color: #fcd32b;
+			margin-top: 10px;
+			margin-left: 10px;
+			float: left;
+			-webkit-transform-style: preserve-3d;
+			-webkit-transform: perspective(600px) rotateY(-90deg) scale(2);
+		}
+
+		.button-big {
+			width: 145px;
+			height: 145px;
+		}
+
+		.button-double {
+			width: 300px;
+			height: 145px;
+		}
+
+		.button-small {
+			width: 67.5px;
+			height: 67.5px;
+		}
+
+		.button img {
+			width: 100%;
+			height: 100%;
+		}
+
+		#buttons {
+			position: absolute;
+			top: 55px;
+			height: 476px;
+		}
+
+		#logo {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			width: 70px;
+		}
+	</style>
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-35756348-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+</head>
+<body>
+	<div id="scroll">
+		<div id="background"></div>
+		<div id="buttons">
+			<a href="http://bit.ly/yoc-nl920-city" target="_blank" onclick="_gaq.push(['_trackEvent', 'Button', 'Pressed', 'City', 1]);"><div id="city" class="button button-big"><img src="img/city.jpg"/></div></a>
+			<a href="http://bit.ly/yoc-nl920-contacts" target="_blank" onclick="_gaq.push(['_trackEvent', 'IconPressed', 'Contacts', 1]);"><div id="friends" class="button button-big"><img src="img/contacts.jpg"/></div></a>
+			<a href="http://bit.ly/yoc-nl920-store" target="_blank" onclick="_gaq.push(['_trackEvent', 'Button', 'Pressed', 'Store', 1]);"><div id="store" class="button button-big"><img src="img/store.jpg"/></div></a>
+			<a href="http://bit.ly/yoc-nl920-bus" target="_blank" onclick="_gaq.push(['_trackEvent', 'IconPressed', 'Bus', 1]);"><div id="bus" class="button button-small"><img src="img/bus.jpg"/></div></a>
+			<a href="http://bit.ly/yoc-nl920-compass" target="_blank" onclick="_gaq.push(['_trackEvent', 'Button', 'Pressed', 'Compass', 1]);"><div id="compass" class="button button-small"><img src="img/compass.jpg"/></div></a>
+			<a href="http://bit.ly/yoc-nl920-music" target="_blank" onclick="_gaq.push(['_trackEvent', 'Button', 'Pressed', 'Music', 1]);"><div id="music" class="button button-small"><img src="img/music.jpg"/></div></a>
+			<a href="http://bit.ly/yoc-nl-920-february" target="_blank" onclick="_gaq.push(['_trackEvent', 'Button', 'Pressed', 'Explorer', 1]);"><div id="email" class="button button-small"><img src="img/explorer.jpg"/></div></a>
+			<a href="http://bit.ly/yoc-nl920-fotos" target="_blank" onclick="_gaq.push(['_trackEvent', 'Button', 'Pressed', 'Fotos', 1]);"><div id="fotos" class="button button-double"><img src="img/fotos.jpg"/></div></a>
+		</div>
+	</div>
+	<img id="logo" src="img/logo.png"/>
+	<p style="position: absolute; top: -10px; left: 40px; color: white;">-w-</p>
+	<script>
+		/*jslint browser: true, devel: true*/
+
+		function loadTrackingPixel() {
+			'use strict';
+
+			var el = document.createElement("img");
+			el.src = '#';
+			document.body.appendChild(el);
+		}
+
+		function fadeBackground() {
+			'use strict';
+			document.getElementById('background').style.opacity = '1';
+		}
+
+		function presentButton(button, delay) {
+			'use strict';
+
+			button.style['-webkit-transition'] = 'all 0.5s ease-out ' + delay + 'ms';
+			button.style['-webkit-transform'] = 'perspective(600px) rotateY(0deg) scale(1)';
+			button.style.opacity = 1;
+		}
+
+		function animate() {
+			'use strict';
+			fadeBackground();
+
+			var i, buttons = document.getElementsByClassName('button');
+			for (i = 0; i < buttons.length; i = i + 1) {
+				presentButton(buttons[i], i * 100);
+			}
+		}
+
+		function setupLinks() {
+			'use strict';
+			console.log('setting up links');
+			var links = document.getElementsByTagName('a'), i;
+
+			for (i = 0; i < links.length; i = i + 1) {
+				links[i].setAttribute('href', links[i].getAttribute('href') + '?random=' + Math.random());
+			}
+		}
+
+		function hideAddressBar() {
+			'use strict';
+
+			document.addEventListener('click', setupLinks());
+
+			setTimeout(function () {
+				window.scrollTo(0, 1);
+				animate();
+			}, 100);
+		}
+
+		window.onload = hideAddressBar;
+	</script>
+</body>

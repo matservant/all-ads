@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Nokia Lumia 920</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="user-scalable=no, width=320" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<style type="text/css">
+		html {
+			height: 100%;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+			color: red;
+			height: 416px;
+			font-weight: 300;
+			min-height: 416px;
+			width: 320px;
+			background-color: black;
+		}
+
+		.button {
+			background-color: #fcd32b;
+			margin-top: 10px;
+			margin-left: 10px;
+			float: left;
+			-webkit-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+			-webkit-transform: perspective(600px) rotateY(-90deg) scale(2);
+			transform: perspective(600px) rotateY(-90deg) scale(2);
+		}
+
+		.button-big {
+			width: 145px;
+			height: 145px;
+		}
+
+		.button-small {
+			width: 67.5px;
+			height: 67.5px;
+		}
+
+		.button img {
+			width: 100%;
+			height: 100%;
+		}
+
+		#buttons {
+			position: absolute;
+			padding-top: 55px;
+			height: 568px;
+			overflow: hidden;
+		}
+
+		#current-app {
+			position: absolute;
+			width: 320px;
+			top: 0;
+			left: -320px;
+			height: 568px;
+			-webkit-transition: all 0.5s ease-out 0ms;
+			-webkit-transform: perspective(600px) rotateY(90deg) translateX(-320px) scale(0.5);
+			transition: all 0.5s ease-out 0ms;
+			transform: perspective(600px) rotateY(90deg) translateX(-320px) scale(0.5);
+			overflow: hidden;
+		}
+
+		#current-app img {
+			width: 100%;
+		}
+
+		#toolbar {
+			-webkit-transition: all 0.5s ease-in-out 1000ms;
+			transition: all 0.5s ease-in-out 1000ms;
+			position: fixed;
+			bottom: -100px;
+			width: 320px;
+		}
+
+		.button-double {
+			width: 300px;
+			height: 145px;
+		}
+
+		#logo {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			width: 70px;
+		}
+	</style>
+</head>
+<body>
+	<img id="logo" src="img/logo.png"/>
+	<div id="current-app"></div>
+	<div id="buttons">
+		<a href="#city" onclick="_gaq.push(['_trackEvent', 'Button', 'Pressed', 'CityLP', 2]);">
+			<div id="city" class="button button-big"><img src="img/city.jpg"/></div>
+		</a>
+		<a href="#contacts" onclick="_gaq.push(['_trackEvent', 'Button', 'Pressed', 'ContactsLP', 2]);">
+			<div id="contacts" class="button button-big"><img src="img/contacts.jpg"/></div>
+		</a>
+		<a href="#store" onclick="_gaq.push(['_trackEvent', 'Button', 'Pressed', 'StoreLP', 2]);">
+			<div id="store" class="button button-big"><img src="img/store.jpg"/></div>
+		</a>
+		<a href="#bus" onclick="_gaq.push(['_trackEvent', 'Button', 'Pressed', 'BusLP', 2]);">
+			<div id="bus" class="button button-small"><img src="img/bus.jpg"/></div>
+		</a>
+		<a href="#compass" onclick="_gaq.push(['_trackEvent', 'Button', 'Pressed', 'CompassLP', 2]);">
+			<div id="compass" class="button button-small"><img src="img/compass.jpg"/></div>
+		</a>
+		<a href="#music" onclick="_gaq.push(['_trackEvent', 'Button', 'Pressed', 'MusicLP', 2]);">
+			<div id="music" class="button button-small"><img src="img/music.jpg"/></div>
+		</a>
+		<a id="explorer-link" href="http://bit.ly/yoc-nl-920-february" onclick="_gaq.push(['_trackEvent', 'Button', 'Pressed', 'ExplorerLP', 2]);">
+			<div id="explorer" class="button button-small"><img src="img/explorer.jpg"/></div>
+		</a>
+		<a href="#fotos" onclick="_gaq.push(['_trackEvent', 'Button', 'Pressed', 'ExplorerLP', 2]);"><div id="fotos" class="button button-double"><img src="img/fotos.jpg"/></div></a>
+	</div>
+	<p style="position: absolute; top: -10px; left: 40px; color: white;">-w-</p>
+	<img src="img/toolbar.jpg" id="toolbar" class="toolbar"/>
+	<script>
+		/*jslint browser: true, devel: true*/
+
+		var isAustrian = false;
+
+		function loadTrackingPixel() {
+			'use strict';
+
+			var el = document.createElement("img");
+			el.src = '#';
+			document.body.appendChild(el);
+		}
+
+		function presentButton(button, delay) {
+			'use strict';
+
+			button.style['-webkit-transition'] = 'all 0.5s ease-out ' + delay + 'ms';
+			button.style['-webkit-transform'] = 'perspective(600px) rotateY(0deg) scale(1)';
+			button.style.transition = 'all 0.5s ease-out ' + delay + 'ms';
+			button.style.transform = 'perspective(600px) rotateY(0deg) scale(1)';
+			button.style.opacity = 1;
+		}
+
+		function hideButton(button, delay) {
+			'use strict';
+
+			button.style['-webkit-transition'] = 'all 0.5s ease-out ' + delay + 'ms';
+			button.style['-webkit-transform'] = 'perspective(600px) rotateY(-90deg) scale(2)';
+			button.style.transition = 'all 0.5s ease-out ' + delay + 'ms';
+			button.style.transform = 'perspective(600px) rotateY(-90deg) scale(2)';
+			button.style.opacity = 0;
+		}
+
+		function showHomeScreen() {
+			'use strict';
+
+			setTimeout(function () {
+				window.scrollTo(0, 1);
+			}, 3);
+
+			var i, buttons = document.getElementsByClassName('button');
+
+			for (i = 0; i < buttons.length; i = i + 1) {
+				presentButton(buttons[i], i * 100);
+			}
+		}
+
+		function hideHomeScreen() {
+			'use strict';
+			console.log('hiding home screen');
+			var i, buttons = document.getElementsByClassName('button');
+
+			for (i = 0; i < buttons.length; i = i + 1) {
+				hideButton(buttons[i], i * 100);
+			}
+		}
+
+		function showToolbar() {
+			'use strict';
+			document.getElementById('toolbar').style.bottom = 0;
+		}
+
+		function hideToolbar() {
+			'use strict';
+			document.getElementById('toolbar').style.bottom = '-100px';
+		}
+
+		function hideApp() {
+			'use strict';
+			var currentApp = document.getElementById('current-app');
+			currentApp.style.left = '-320px';
+			currentApp.style['-webkit-transform'] = 'perspective(600px) rotateY(90deg) translateX(-320px) scale(0.5)';
+			currentApp.style.transform = 'perspective(600px) rotateY(90deg) translateX(-320px) scale(0.5)';
+		}
+
+		function pressHomeEvent() {
+			'use strict';
+
+			if (event.clientX > 106) {
+				if (isAustrian) {
+					window.location = 'http://bit.ly/Z5hRXh?random=' + Math.random();
+				} else {
+					window.location = 'http://bit.ly/yoc-nl920?random=' + Math.random();
+				}
+				return;
+			}
+
+			hideToolbar();
+			hideApp();
+			showHomeScreen();
+		}
+
+		function showApp(basename) {
+			'use strict';
+
+			var currentApp = document.getElementById('current-app'),
+				appImage = document.createElement('img'),
+				oldImage = currentApp.childNodes[0];
+			appImage.id = 'currentAppImage';
+			appImage.src = '/img/pages/' + basename + '.jpg';
+
+			if (oldImage) {
+				currentApp.removeChild(oldImage);
+			}
+			currentApp.appendChild(appImage);
+			currentApp.style['-webkit-transform'] = 'perspective(600px) rotateY(0deg) scale(1)';
+			currentApp.style.transform = 'perspective(600px) rotateY(0deg) scale(1)';
+			currentApp.style.left = 0;
+
+			setTimeout(function () {
+				window.scrollTo(0, 1);
+			}, 3);
+		}
+
+		function basename(filename) {
+			'use strict';
+
+			var filenameArray = filename.split('.');
+			return filenameArray[0];
+		}
+
+		function lastPathElement() {
+			'use strict';
+
+			var pathArray = window.location.pathname.split('/');
+
+			return pathArray[pathArray.length - 1];
+		}
+
+		function pressButtonEvent() {
+			'use strict';
+
+			showApp(event.target.parentNode.id);
+			showToolbar();
+			hideHomeScreen();
+		}
+
+		function addEventListeners() {
+			'use strict';
+
+			document.getElementById('toolbar').addEventListener('click', pressHomeEvent);
+
+			var i, buttons = document.getElementsByClassName('button');
+			for (i = 0; i < buttons.length; i = i + 1) {
+				console.log('adding pressButtonEvent');
+				buttons[i].addEventListener('click', pressButtonEvent);
+			}
+		}
+
+		function getParameterByName(name) {
+			'use strict';
+			name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+			var regexS = "[\\?&]" + name + "=([^&#]*)",
+				regex = new RegExp(regexS),
+				results = regex.exec(window.location.search);
+			if (results === null) {
+				return "";
+			} else {
+				return decodeURIComponent(results[1].replace(/\+/g, " "));
+			}
+		}
+
+		function hideAddressBar() {
+			'use strict';
+
+			document.getElementById('explorer-link').href = document.getElementById('explorer-link').href + '?random=' + Math.random();
+
+			if (getParameterByName('v') === 'au') {
+				console.log('setting austrian version');
+				isAustrian = true;
+				document.getElementById('explorer-link').href = 'http://bit.ly/Z5hRXh?random=' + Math.random();
+			}
+
+			setTimeout(function () {
+				window.scrollTo(0, 1);
+			}, 100);
+
+			addEventListeners();
+			showApp(basename(lastPathElement()));
+			showToolbar();
+		}
+
+		window.onload = hideAddressBar;
+	</script>
+</body>

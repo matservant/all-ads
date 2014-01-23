@@ -1,0 +1,150 @@
+/*
+
+        Creating a sprite from following images:
+        
+        _creatives/frames/smurfs_elevator_320x00.png (320x180)
+        _creatives/frames/smurfs_elevator_320x01.png (320x180)
+        _creatives/frames/smurfs_elevator_320x02.png (320x180)
+        _creatives/frames/smurfs_elevator_320x03.png (320x180)
+        _creatives/frames/smurfs_elevator_320x04.png (320x180)
+        _creatives/frames/smurfs_elevator_320x05.png (320x180)
+        _creatives/frames/smurfs_elevator_320x06.png (320x180)
+        _creatives/frames/smurfs_elevator_320x07.png (320x180)
+        _creatives/frames/smurfs_elevator_320x08.png (320x180)
+        _creatives/frames/smurfs_elevator_320x09.png (320x180)
+        _creatives/frames/smurfs_elevator_320x10.png (320x180)
+        _creatives/frames/smurfs_elevator_320x11.png (320x180)
+        _creatives/frames/smurfs_elevator_320x12.png (320x180)
+        _creatives/frames/smurfs_elevator_320x13.png (320x180)
+        _creatives/frames/smurfs_elevator_320x14.png (320x180)
+        _creatives/frames/smurfs_elevator_320x15.png (320x180)
+        _creatives/frames/smurfs_elevator_320x16.png (320x180)
+        _creatives/frames/smurfs_elevator_320x17.png (320x180)
+        _creatives/frames/smurfs_elevator_320x18.png (320x180)
+        _creatives/frames/smurfs_elevator_320x19.png (320x180)
+        _creatives/frames/smurfs_elevator_320x20.png (320x180)
+        _creatives/frames/smurfs_elevator_320x21.png (320x180)
+        _creatives/frames/smurfs_elevator_320x22.png (320x180)
+        _creatives/frames/smurfs_elevator_320x23.png (320x180)
+        _creatives/frames/smurfs_elevator_320x24.png (320x180)
+        _creatives/frames/smurfs_elevator_320x25.png (320x180)
+        _creatives/frames/smurfs_elevator_320x26.png (320x180)
+        _creatives/frames/smurfs_elevator_320x27.png (320x180)
+        _creatives/frames/smurfs_elevator_320x28.png (320x180)
+        _creatives/frames/smurfs_elevator_320x29.png (320x180)
+        _creatives/frames/smurfs_elevator_320x30.png (320x180)
+        _creatives/frames/smurfs_elevator_320x31.png (320x180)
+        _creatives/frames/smurfs_elevator_320x32.png (320x180)
+        _creatives/frames/smurfs_elevator_320x33.png (320x180)
+        _creatives/frames/smurfs_elevator_320x34.png (320x180)
+        _creatives/frames/smurfs_elevator_320x35.png (320x180)
+        _creatives/frames/smurfs_elevator_320x36.png (320x180)
+        _creatives/frames/smurfs_elevator_320x37.png (320x180)
+        _creatives/frames/smurfs_elevator_320x38.png (320x180)
+        _creatives/frames/smurfs_elevator_320x39.png (320x180)
+        _creatives/frames/smurfs_elevator_320x40.png (320x180)
+        _creatives/frames/smurfs_elevator_320x41.png (320x180)
+        _creatives/frames/smurfs_elevator_320x42.png (320x180)
+        _creatives/frames/smurfs_elevator_320x43.png (320x180)
+        _creatives/frames/smurfs_elevator_320x44.png (320x180)
+        _creatives/frames/smurfs_elevator_320x45.png (320x180)
+        _creatives/frames/smurfs_elevator_320x46.png (320x180)
+        _creatives/frames/smurfs_elevator_320x47.png (320x180)
+        _creatives/frames/smurfs_elevator_320x48.png (320x180)
+        _creatives/frames/smurfs_elevator_320x49.png (320x180)
+        _creatives/frames/smurfs_elevator_320x50.png (320x180)
+        _creatives/frames/smurfs_elevator_320x51.png (320x180)
+        _creatives/frames/smurfs_elevator_320x52.png (320x180)
+        _creatives/frames/smurfs_elevator_320x53.png (320x180)
+        _creatives/frames/smurfs_elevator_320x54.png (320x180)
+        _creatives/frames/smurfs_elevator_320x55.png (320x180)
+        _creatives/frames/smurfs_elevator_320x56.png (320x180)
+        _creatives/frames/smurfs_elevator_320x57.png (320x180)
+        _creatives/frames/smurfs_elevator_320x58.png (320x180)
+        _creatives/frames/smurfs_elevator_320x59.png (320x180)
+        _creatives/frames/smurfs_elevator_320x60.png (320x180)
+        _creatives/frames/smurfs_elevator_320x61.png (320x180)
+        _creatives/frames/smurfs_elevator_320x62.png (320x180)
+        _creatives/frames/smurfs_elevator_320x63.png (320x180)
+        _creatives/frames/smurfs_elevator_320x64.png (320x180)
+        _creatives/frames/smurfs_elevator_320x65.png (320x180)
+        _creatives/frames/smurfs_elevator_320x66.png (320x180)
+        _creatives/frames/smurfs_elevator_320x67.png (320x180)
+
+        Output files:
+          _creatives/frames-fs8.png
+          _creatives/frames.css
+
+        Output size:
+          21760x180
+
+
+*/
+img.smurfs_elevator_320x00 { width: 320px; height: 180px; background: url(img/frames-fs8.png) 0px 0px no-repeat; }
+img.smurfs_elevator_320x01 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -320px 0px no-repeat; }
+img.smurfs_elevator_320x02 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -640px 0px no-repeat; }
+img.smurfs_elevator_320x03 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -960px 0px no-repeat; }
+img.smurfs_elevator_320x04 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -1280px 0px no-repeat; }
+img.smurfs_elevator_320x05 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -1600px 0px no-repeat; }
+img.smurfs_elevator_320x06 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -1920px 0px no-repeat; }
+img.smurfs_elevator_320x07 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -2240px 0px no-repeat; }
+img.smurfs_elevator_320x08 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -2560px 0px no-repeat; }
+img.smurfs_elevator_320x09 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -2880px 0px no-repeat; }
+img.smurfs_elevator_320x10 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -3200px 0px no-repeat; }
+img.smurfs_elevator_320x11 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -3520px 0px no-repeat; }
+img.smurfs_elevator_320x12 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -3840px 0px no-repeat; }
+img.smurfs_elevator_320x13 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -4160px 0px no-repeat; }
+img.smurfs_elevator_320x14 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -4480px 0px no-repeat; }
+img.smurfs_elevator_320x15 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -4800px 0px no-repeat; }
+img.smurfs_elevator_320x16 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -5120px 0px no-repeat; }
+img.smurfs_elevator_320x17 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -5440px 0px no-repeat; }
+img.smurfs_elevator_320x18 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -5760px 0px no-repeat; }
+img.smurfs_elevator_320x19 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -6080px 0px no-repeat; }
+img.smurfs_elevator_320x20 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -6400px 0px no-repeat; }
+img.smurfs_elevator_320x21 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -6720px 0px no-repeat; }
+img.smurfs_elevator_320x22 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -7040px 0px no-repeat; }
+img.smurfs_elevator_320x23 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -7360px 0px no-repeat; }
+img.smurfs_elevator_320x24 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -7680px 0px no-repeat; }
+img.smurfs_elevator_320x25 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -8000px 0px no-repeat; }
+img.smurfs_elevator_320x26 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -8320px 0px no-repeat; }
+img.smurfs_elevator_320x27 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -8640px 0px no-repeat; }
+img.smurfs_elevator_320x28 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -8960px 0px no-repeat; }
+img.smurfs_elevator_320x29 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -9280px 0px no-repeat; }
+img.smurfs_elevator_320x30 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -9600px 0px no-repeat; }
+img.smurfs_elevator_320x31 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -9920px 0px no-repeat; }
+img.smurfs_elevator_320x32 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -10240px 0px no-repeat; }
+img.smurfs_elevator_320x33 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -10560px 0px no-repeat; }
+img.smurfs_elevator_320x34 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -10880px 0px no-repeat; }
+img.smurfs_elevator_320x35 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -11200px 0px no-repeat; }
+img.smurfs_elevator_320x36 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -11520px 0px no-repeat; }
+img.smurfs_elevator_320x37 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -11840px 0px no-repeat; }
+img.smurfs_elevator_320x38 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -12160px 0px no-repeat; }
+img.smurfs_elevator_320x39 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -12480px 0px no-repeat; }
+img.smurfs_elevator_320x40 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -12800px 0px no-repeat; }
+img.smurfs_elevator_320x41 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -13120px 0px no-repeat; }
+img.smurfs_elevator_320x42 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -13440px 0px no-repeat; }
+img.smurfs_elevator_320x43 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -13760px 0px no-repeat; }
+img.smurfs_elevator_320x44 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -14080px 0px no-repeat; }
+img.smurfs_elevator_320x45 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -14400px 0px no-repeat; }
+img.smurfs_elevator_320x46 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -14720px 0px no-repeat; }
+img.smurfs_elevator_320x47 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -15040px 0px no-repeat; }
+img.smurfs_elevator_320x48 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -15360px 0px no-repeat; }
+img.smurfs_elevator_320x49 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -15680px 0px no-repeat; }
+img.smurfs_elevator_320x50 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -16000px 0px no-repeat; }
+img.smurfs_elevator_320x51 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -16320px 0px no-repeat; }
+img.smurfs_elevator_320x52 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -16640px 0px no-repeat; }
+img.smurfs_elevator_320x53 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -16960px 0px no-repeat; }
+img.smurfs_elevator_320x54 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -17280px 0px no-repeat; }
+img.smurfs_elevator_320x55 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -17600px 0px no-repeat; }
+img.smurfs_elevator_320x56 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -17920px 0px no-repeat; }
+img.smurfs_elevator_320x57 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -18240px 0px no-repeat; }
+img.smurfs_elevator_320x58 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -18560px 0px no-repeat; }
+img.smurfs_elevator_320x59 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -18880px 0px no-repeat; }
+img.smurfs_elevator_320x60 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -19200px 0px no-repeat; }
+img.smurfs_elevator_320x61 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -19520px 0px no-repeat; }
+img.smurfs_elevator_320x62 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -19840px 0px no-repeat; }
+img.smurfs_elevator_320x63 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -20160px 0px no-repeat; }
+img.smurfs_elevator_320x64 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -20480px 0px no-repeat; }
+img.smurfs_elevator_320x65 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -20800px 0px no-repeat; }
+img.smurfs_elevator_320x66 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -21120px 0px no-repeat; }
+img.smurfs_elevator_320x67 { width: 320px; height: 180px; background: url(img/frames-fs8.png) -21440px 0px no-repeat; }

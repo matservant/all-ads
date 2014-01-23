@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Monopoly</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="user-scalable=no, width=320" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<link rel="stylesheet" href="animations.css">
+	<style type="text/css">
+		html {
+			height: 100%;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+			color: red;
+			font-weight: 300;
+			height: 100%;
+			min-height: 416px;
+			width: 320px;
+		}
+
+		.scene {
+			width: 320px;
+			overflow: hidden;
+		}
+
+		#scene-1 {
+			position: absolute;
+			height: 100%;
+			min-height: 416px;
+			-webkit-transform-style: preserve-3d;
+		}
+
+		#scene-2 {
+			position: absolute;
+			display: none;
+			height: 100%;
+			min-height: 416px;
+			top: 0;
+			width: 320px;
+		}
+
+		#logo {
+			position: absolute;
+			height: 568px;
+			background-color: white;
+			top: 49%;
+			margin-top: -284px;
+			width: 320px;
+			overflow: hidden;
+		}
+
+		#game {
+			position: absolute;
+			top: 54%;
+			width: 320px;
+			margin-top:-120px;
+		}
+
+		#spielbar {
+			position: fixed;
+			bottom: 0;
+			width: 320px;
+		}
+
+		.remove {
+			-webkit-transform: perspective(600px) translate3d(-50px, -50px, 0px) rotateX(30deg);
+		}
+
+		#instructions {
+			position: absolute;
+			height: 130px;
+			top: 50%;
+			margin-top: -65px;
+			margin-left: 8px;
+			-webkit-transform: perspective(600px) translate3d(32px, 10px, 100px);
+			padding: 5px;
+			z-index: 1000;
+			opacity: 0;
+			-webkit-transition: all 0.2s linear 0s;
+		}
+
+		#instructions img {
+			position: absolute;
+			top: 0;
+			width: 185px;
+		}
+
+		#instructions-background {
+			position: absolute;
+			top: -10px;
+			left: -5px;
+			background-color: white;
+			width: 206px;
+			height: 100%;
+			opacity: 0.8;
+			-webkit-border-radius: 10px;
+		}
+
+		#bucks {
+			z-index: 100;
+		}
+
+	</style>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-35759445-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+</head>
+<body>
+	<div id="scene-2" class="scene">
+		<img src="img/scene2.jpeg" id="logo"/>
+	</div>
+	<div id="scene-1" class="scene">
+		<div id="bucks">
+			<img id="buck-500-vintage" src="img/500-vintage.jpg" class="buck"/>
+			<img id="buck-100-vintage" src="img/100-vintage.jpg" class="buck"/>
+			<img id="buck-50-vintage" src="img/50-vintage.jpg" class="buck"/>
+			<img id="buck-20-vintage" src="img/20-vintage.jpg" class="buck"/>
+			<img id="buck-10-vintage" src="img/10-vintage.jpg" class="buck"/>
+			<img id="buck-5-vintage" src="img/5-vintage.jpg" class="buck"/>
+			<img id="buck-1-vintage" src="img/1-vintage.jpg" class="buck"/>
+			<img id="buck-500" src="img/500.jpeg" class="buck"/>
+			<img id="buck-100" src="img/100.jpg" class="buck"/>
+			<img id="buck-10" src="img/10.jpeg" class="buck"/>
+		</div>
+		<div id="instructions">
+			<div id="instructions-background"></div>
+			<img src="img/instructions.png"/>
+		</div>
+	</div>
+	<script>
+		/*jslint browser: true, devel: true*/
+
+		var sensitivity = 20, x1 = 0, y1 = 0, z1 = 0, x2 = 0, y2 = 0, z2 = 0, firstShake = true;
+
+		function triggerEnd() {
+			'use strict';
+			document.getElementById('scene-2').setAttribute('style', 'display: block');
+
+			var i, bucks = document.getElementsByClassName('buck');
+
+			for (i = 0; i < bucks.length; i = i + 1) {
+				bucks[i].setAttribute('style', 'display: none');
+			}
+
+			document.getElementById('instructions').setAttribute('style', 'opacity: 0');
+			document.getElementById('scene-2').setAttribute('style', 'display: block');
+		}
+
+		function sas_deviceShaked() {
+			'use strict';
+			if (firstShake) {
+				_gaq.push(['_trackEvent', 'Shake', 'Show', 'SASDeviceShaked', 0]);
+				firstShake = false;
+			}
+			triggerEnd();
+		}
+
+		function start() {
+			'use strict';
+
+			setTimeout(function () {
+				document.getElementById('instructions').style.opacity = 1;
+
+				window.addEventListener('devicemotion', function (e) {
+					x1 = e.accelerationIncludingGravity.x;
+					y1 = e.accelerationIncludingGravity.y;
+					z1 = e.accelerationIncludingGravity.z;
+
+					var change = Math.abs(x1 - x2 + y1 - y2 + z1 - z2);
+
+					if (change > sensitivity) {
+						if (firstShake) {
+							_gaq.push(['_trackEvent', 'Shake', 'Show', 'NativeDeviceMotion', 0]);
+							firstShake = false;
+						}
+						triggerEnd();
+					}
+
+					x2 = x1;
+					y2 = y1;
+					z2 = z1;
+				}, false);
+			}, 1000);
+
+			var i, bucks = document.getElementsByClassName('buck');
+			for (i = 0; i < bucks.length; i = i + 1) {
+				console.log(bucks[i]);
+				bucks[i].setAttribute('class', 'buck buck-' + (i + 1));
+			}
+
+			setTimeout(function () {
+				window.scrollTo(0, 1);
+			}, 100);
+
+			setTimeout(function () {
+				triggerEnd();
+			}, 7000);
+		}
+
+		document.addEventListener('touchstart', function () {
+			_gaq.push(['_trackEvent', 'Click', 'Followed', 'CTA', 0]);
+			window.open('http://bit.ly/yoc-mp-2');
+		});
+
+		document.addEventListener('touchmove', function () {
+			'use strict';
+			event.preventDefault();
+		});
+
+		window.onload = start;
+	</script>
+</body>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Nokia Lumia 920</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="user-scalable=no, width=320" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<style type="text/css">
+		@-webkit-keyframes shake-left-arrow {
+			50% { -webkit-transform: translate(10px, 0); }
+			100% { -webkit-transform: translate(0, 0); }
+		}
+
+		@-webkit-keyframes shake-right-arrow {
+			50% { -webkit-transform: translate(-10px, 0); }
+			100% { -webkit-transform: translate(0, 0); }
+		}
+
+
+		html {
+			height: 100%;
+		}
+
+		@font-face {
+			font-family: nokia-pure-text;
+			src: url('/fonts/nokia-pure-text.ttf') format('truetype');
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: nokia-pure-text, arial, sans-serif;
+			color: white;
+			font-weight: 300;
+			height: 416px;
+			min-height: 416px;
+			width: 320px;
+			background-color: black;
+			letter-spacing: -1px;
+		}
+
+		#your-view {
+			position: absolute;
+			top: 0;
+			background-image: url('img/your-view-alt.jpg');
+			background-size: 320px 578px;
+			background-position: left top;
+			height: 100%;
+			min-height: 416px;
+			width: 242px;
+			border-style: solid;
+			border-width: 0 5px 0 0;
+			border-color: red;
+			overflow: hidden;
+		}
+
+		#pure-view {
+			position: absolute;
+			top: 0;
+			background-image: url('img/pure-view-alt.jpg');
+			background-size: 320px 578px;
+			background-position: left top;
+			height: 100%;
+			min-height: 416px;
+			width: 320px;
+		}
+
+		.btn {
+			opacity: 0.9;
+		}
+
+		.switch-btn {
+			width: 30px;
+			position: absolute;
+			top: 56px;
+			right: 12px;
+		}
+
+		.camera-btn {
+			width: 60px;
+			position: absolute;
+			bottom: 8px;
+			left: 130px;
+		}
+
+		.photos-btn {
+			width: 44px;
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+		}
+
+		.scenes-btn {
+			height: 30px;
+			position: absolute;
+			top: 54px;
+			left: 99px;
+		}
+
+		.iphone-toolbar {
+			width: 320px;
+			bottom: 0;
+			left: 0;
+			position: absolute;
+		}
+
+		#normal {
+			position: absolute;
+			bottom: 44px;
+			left: 10px;
+		}
+
+		.nokia {
+			position: absolute;
+			top: 12px;
+			right: 18px;
+			width: 86px;
+		}
+
+		.phone {
+			position: absolute;
+			bottom: 20px;
+			left: 20px;
+			width: 150px;
+		}
+
+		#nokia-text {
+			position: absolute;
+			bottom: 275px;
+			left: 20px;
+			height: 96px;
+			font-size: 26px;
+		}
+
+		.removable {
+			opacity: 1;
+			-webkit-transition: opacity 0.5s ease-out 0.5ms;
+		}
+
+		.appearable {
+			opacity: 0;
+			-webkit-transition: opacity 0.5s ease-out 0.5ms;
+		}
+
+		#pureview-text {
+			position: absolute;
+			bottom: 44px;
+			right: 12px;
+		}
+
+		#top-banner {
+			position: absolute;
+			top: 0;
+			width: 320px;
+			height: 36px;
+			background: -webkit-linear-gradient(left,rgba(44, 108, 156, 1) 10%,rgba(87, 158, 200, 1) 50%,rgba(44, 108, 156, 1) 90%);
+			opacity: 0.98;
+		}
+
+		.new-btn {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 320px;
+		}
+
+		#cta {
+			position: absolute;
+			top: 115px;
+			left: 19px;
+			width: 153px;
+			height: 25px;
+			background-color: #017ac8;
+			border-radius: 8px;
+		}
+
+		a {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 320px;
+			height: 568px;
+		}
+
+		#left-arrow {
+			position: absolute;
+			top: 50px;
+			left: 210px;
+			-webkit-transition: all 500ms ease-out 0;
+			-webkit-animation: shake-left-arrow 1s ease-out 0s;
+			-webkit-animation-fill-mode: forwards;
+			-webkit-animation-iteration-count: infinite;
+		}
+
+		#right-arrow {
+			position: absolute;
+			top: 50px;
+			left: 260px;
+			-webkit-transition: all 500ms ease-out 0;
+			-webkit-animation: shake-right-arrow 1s ease-out 0s;
+			-webkit-animation-fill-mode: forwards;
+			-webkit-animation-iteration-count: infinite;
+		}
+
+		#combi {
+			position: absolute;
+			top: 40px;
+			left: 19px;
+			width: 282px;
+		}
+	</style>
+</head>
+<body>
+	<div id="pure-view">
+		<img class="new-btn btn removable" src="img/newbuttons.png">
+		<img class="phone appearable" src="img/nl-920.png">
+		<img class="nokia appearable" src="img/nokia.png">
+		<div id="cta" class="appearable"></div>
+		<img id="combi" class="appearable" src="img/combi.png">
+		<p id="pureview-text" class="removable">Nokia Lumia 920</p>
+		<a href="http://bit.ly/yoc-nl920-february-pureview" target="_blank" class="appearable"></a>
+	</div>
+	<div id="your-view" class="removable">
+		<p id="normal">iPhone</p>
+		<img class="iphone-toolbar" src="img/iphone-toolbar.jpg">
+	</div>
+	<div id="arrows" class="removable">
+		<p id="left-arrow">←</p>
+		<p id="right-arrow">→</p>
+	</div>
+	<div id="top-banner" class="removable">
+		<img class="nokia" src="img/nokia.png">
+	</div>
+
+	<script>
+		/*jslint browser: true, devel: true*/
+
+		// prevent website scrolling
+		document.addEventListener('touchmove', function () {
+			'use strict';
+			event.preventDefault();
+		});
+
+		// move vertical bar when touching the screen
+		document.body.addEventListener('touchmove', function () {
+			'use strict';
+			var yourView = document.getElementById('your-view'),
+				width = event.targetTouches[0].pageX;
+
+			if (width < 310)
+				yourView.style.width = width + 'px';
+
+			// remove help arrows once they're not needed
+			document.getElementById('arrows').style.display = 'none';
+		});
+
+		function showBanner() {
+			'use strict';
+			var	i,
+				appearable = document.getElementsByClassName('appearable'),
+				removable = document.getElementsByClassName('removable'),
+				yourView = document.getElementById('your-view');
+			
+			yourView.style['-webkit-transition'] = 'all 1s ease-out 0ms';
+			yourView.style.width = 0;
+
+			for (i = 0; i < removable.length; i = i + 1) {
+				removable[i].style.opacity = 0;
+			}
+
+			for (i = 0; i < appearable.length; i = i + 1) {
+				appearable[i].style.opacity = 1;
+			}
+
+		}
+
+		// hide the navigation bar
+		function hideAddressBar() {
+			'use strict';
+
+			setTimeout(function () {
+				window.scrollTo(0, 1);
+			}, 100);
+
+			setTimeout(function () {
+				showBanner();
+			}, 6000);
+		}
+
+		window.onload = hideAddressBar;
+	</script>
+</body>

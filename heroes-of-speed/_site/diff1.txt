@@ -1,0 +1,220 @@
+
+/** AD-CONFIG **/
+var AdPath = 'http://streaming.ad-balancer.net/yoc/2013-04-surface/';
+var SwiffyRuntimePath = 'http://streaming.ad-balancer.net/yoc/2013-04-surface/';
+var SwiffyFile = 'swiffy.obj_i4.js';
+
+var Dat = new Date();
+var TS = Dat.getTime();
+var alreadyrunflag = 0;
+
+var AdID = 't23_SwiffyOuter';
+var initHTML = '<a id="t23_CloseButton" href="javascript:void(0);" onclick="sas:click"><img src="'+AdPath+'imgs/closebtn.png"></a><div id="t23_SwiffyContent"><div id="t23_Background"></div><div id="t23_SwiffyContainer"></div></div>';
+
+var JSFiles = new Array(
+	AdPath + "js/" + SwiffyFile,
+	SwiffyRuntimePath + "js/swiffy.runtime.js?ts="+TS
+);
+
+var CSSFiles = new Array(
+	AdPath + "css/t23.swiffy.css?ts="+TS
+);
+  
+var ClickURL = "http://www.example.com";
+
+
+// GET AUTOMATED ADPATH
+var sc = document.getElementsByTagName("script");
+
+// FIND ADPATH AUTOMATICALLY
+if(AdPath == './') {
+	for(idx = 0; idx < sc.length; idx++) {
+	  s = sc.item(idx);
+	  var Match = s.src.match(/t23.loader.js.php/);
+	  if(s.src && Match) {
+	  	AdPath = s.src.substr(0, Match.index);
+	  }
+	}
+}
+
+var T23AdLoader = {
+	CSSFiles: [],
+	CSSLoaded: 0,
+	
+	JSFiles: [],
+	JSLoaded: 0,
+	
+	allFiles: [],
+	
+	FilePath: '',
+	startedSwiffy: false,
+	SwiffyStage: false,
+	Clicktag: '',
+	AdID: '',
+	
+	jQuerySrc: 'http://streaming.ad-balancer.net/yoc/2013-03-totalzero/js/jquery.min.js',
+	minjQuery: 172,
+	
+	scrollTimeout: false,
+	ua: navigator.userAgent,
+	androidversion: '',
+	
+	init: function(JS, CSS, Path, HTML, CT, AdID) {
+		T23AdLoader.JSFiles = JS;
+		T23AdLoader.CSSFiles = CSS;
+		T23AdLoader.initHTML = HTML;
+		T23AdLoader.FilePath = Path;
+		T23AdLoader.Clicktag = CT;
+		T23AdLoader.AdID = AdID;
+		
+		T23AdLoader.start();
+	},
+	
+	start: function() {
+		if(typeof jQuery != 'undefined') {
+			var Version = parseInt(jQuery().jquery.replace(/\./gi, ''));
+			if(Version <= T23AdLoader.minjQuery) {
+				T23AdLoader.JSFiles.unshift(T23AdLoader.jQuerySrc);
+			}
+		} else {
+			T23AdLoader.JSFiles.unshift(T23AdLoader.jQuerySrc);
+		}
+		
+		T23AdLoader.allFiles = T23AdLoader.JSFiles.concat(T23AdLoader.CSSFiles);
+		T23AdLoader.startloading();
+	},
+	
+	startloading: function() {
+		T23AdLoader.loadFiles(T23AdLoader.allFiles, T23AdLoader.fileLoaded);
+	},
+	
+	loadFiles: function(array, callback) {
+    var loader = function(src,handler){
+    var type = 'script';
+    if(src.indexOf('.css') > 0) type = 'link';
+      var elem = document.createElement(type);
+      if(type == 'script') {
+      	elem.src = src;
+	      elem.onload = elem.onreadystatechange = function(){
+	      elem.onreadystatechange = elem.onload = null;
+	      	handler();
+	      }
+      } else {
+	      elem.setAttribute('type', 'text/css');
+	      elem.setAttribute('rel', 'stylesheet');
+	      elem.setAttribute('href', src);
+	      handler();
+      }
+      var head = document.getElementsByTagName("head")[0];
+      (head || document.body).appendChild( elem );
+    };
+    (function(){
+     	if(array.length!=0){
+        	loader(array.shift(),arguments.callee);
+        }else{
+        	callback && callback();
+        }
+    })();
+	},
+	
+	fileLoaded: function() {
+		jQuery('body').append('<div id="t23_SwiffyOuter">'+initHTML+'</div>');
+		
+		// START AD
+		if(T23AdLoader.SwiffyStage == false) {
+			setTimeout(function() {
+				
+				//jQuery('#'+T23AdLoader.AdID).fadeIn('slow');
+				jQuery('#'+T23AdLoader.AdID).show();
+				
+				jQuery('#t23_Background').animate({
+					height: '100%'
+				}, 500, function() {
+					T23AdLoader.SwiffyStage = new swiffy.Stage(document.getElementById('t23_SwiffyContainer'), t23swiffyobject);
+					T23AdLoader.SwiffyStage.setFlashVars("clicktag="+T23AdLoader.Clicktag);
+		      T23AdLoader.SwiffyStage.start();
+				});
+		    
+	      /*
+	      jQuery('#t23_CloseButton').bind('click', function() {
+		      T23AdLoader.Close();
+		    });
+		    */
+		    
+		    T23AdLoader.androidversion = parseFloat(T23AdLoader.ua.slice(T23AdLoader.ua.indexOf("Android")+8));
+		    if(T23AdLoader.ua.indexOf("Android") >= 0 && T23AdLoader.androidversion <= 2.2) {
+		    	T23AdLoader.getScrollPos();
+					jQUery(window).bind('scroll', T23AdLoader.onScroll);
+		    }
+	    }, 200);
+		}
+	},
+	
+	onScroll: function() {
+		clearTimeout(T23AdLoader.scrollTimeout);
+		T23AdLoader.scrollTimeout = setTimeout(T23AdLoader.getScrollPos, 100);
+	},
+	
+	getScrollPos: function() {
+		$('#t23_SwiffyOuter').css({
+			position: 'absolute',
+			top: $(window).scrollTop() + 'px',
+			'background-color': '#FFFFFF'
+		});
+	},
+	
+	Close: function() {
+		jQuery('#t23_SwiffyOuter').remove();
+	  jQuery('#t23_SwiffyClicktag').die('click', function() {
+      T23AdLoader.Close();
+    });
+	}
+	
+}
+
+
+function T23_initAd() {
+	alreadyrunflag = 1;
+	T23AdLoader.init(JSFiles, CSSFiles, AdPath, initHTML, ClickURL, AdID);
+}
+
+/** CONFIG END **/
+
+// INIT ON PAGE LOADED
+if (document.addEventListener) {
+  document.addEventListener('DOMContentLoaded', function(){T23_initAd();}, false)
+} else if (document.all && !window.opera){
+  document.write('<script type="text/javascript" id="rAd_contentloadtag" defer src="javascript:void(0)"></script>')
+  var contentloadtag=document.getElementById('rAd_contentloadtag')
+  contentloadtag.onreadystatechange=function(){
+   if (this.readyState=='complete'){
+		if (!alreadyrunflag){
+      	T23_initAd();
+		}
+   }
+  }
+}
+
+var oldonload = window.onload;
+if(typeof window.onload != 'function') {
+	window.onload=function() {
+		if (!alreadyrunflag){
+			setTimeout(T23_initAd, 10)
+		}
+	}
+} else {
+	window.onload = function() {
+		oldonload();
+		if (!alreadyrunflag){
+			setTimeout(T23_initAd, 10)
+		}
+	}
+}
+
+document.onreadystatechange=function() {
+	if (document.readyState=='complete'){
+		if (!alreadyrunflag){
+			T23_initAd();
+		}
+	}
+}

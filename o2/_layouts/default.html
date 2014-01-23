@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<title>{{page.title}}</title>
+		<meta name="viewport" content="user-scalable=no, width={{ page.width }}" />
+		<style type="text/css">
+{% if page.sprite_css == '300-1'%}
+{% include small.css %}
+{% else %}
+{% include big.css %}
+{% endif %}
+		</style>
+	</head>
+	<body>
+		<a href="//bit.ly/yoc-o2" style="width: 100%; height: 100%; position: absolute; top: 0;" target="_blank">
+{{ content }}
+		</a>
+	</body>
+</html>

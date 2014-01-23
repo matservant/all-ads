@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Catwalk</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="user-scalable=no, width=device-width" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta http-equiv="x-ua-compatible" content="IE=edge" />
+		<style type="text/css">
+body {
+	margin: 0;
+	overflow: hidden;
+	height: 100%;
+	/*min-height: 560px;*/
+	overflow: hidden;
+	-ms-touch-action: none;
+}
+
+#container {
+	overflow: hidden;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	min-height: 560px;
+	background-image: url(img/concert.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	background-position: center -40px;
+}
+
+#phone {
+	position: relative;
+	height: 150px;
+	width: 272px;
+	top: 70%;
+	left: 20%;
+}
+
+#frame {
+	position: absolute;
+	top: 0;
+	height: 100%;
+}
+
+#screen {
+	position: relative;
+	top: 10px;
+	left: 10px;
+	background-color: gray;
+	background-image: url(img/concert-zoom.jpg);
+	background-position: center;
+	background-size: 110%;
+	background-repeat: no-repeat;
+	height: 93px;
+	width: 190px;
+	padding: 20px;
+}
+
+#overlay {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	background-color: #4fbdbe;
+	background-image: url(img/concert-zoom.jpg);
+	background-position: center;
+	background-size: 100%;
+	background-position: 0 -20px;
+	background-repeat: no-repeat;
+	opacity: 0;
+	-webkit-transition: opacity 1s linear;
+	transition: opacity 1s linear;
+	pointer-events: none;
+}
+
+#nokia {
+	position: absolute;
+	top: 150px;
+	right: 18px;
+	width: 47%;
+}
+
+#erfahre {
+	position: absolute;
+	top: 48%;
+	left: 5%;
+	width: 50%;
+}
+
+#footnote {
+	position: fixed;
+	bottom: 5%;
+	left: 5%;
+	width: 90%;
+}
+
+#verschiebe {
+	position: absolute;
+	top: 46px;
+	left: 14px;
+	width: 192px;
+	-webkit-transition: all 1s ease-in;
+	transition: all 1s ease-in;
+}
+
+#tracking-pixel {
+	display: none;
+}
+
+#windows {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 45px;
+}
+
+#microsoft {
+	position: absolute;
+	top: 20px;
+	right: 18px;
+	height: 6px;
+}
+
+#verschiebe-container {
+	position: absolute;
+	background-color: #0a1a8f;
+	top: 0;
+	width: 100%;
+	height: 134px;
+	-webkit-transition: all 1s ease-in;
+	transition: all 1s ease-in;
+}
+
+#log {
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: black;
+}
+		</style>
+	</head>
+	<body>
+<div id="container">
+	<div id="phone">
+		<div id="screen"></div>
+		<img id="frame" src="img/phone.png"/>
+	</div>
+	<div id="overlay">
+		<img id="nokia" src="img/nokia-lumia-1020.png"/>
+	</div>
+	<div id="verschiebe-container">
+		<img id="windows" src="img/windows.png"/>
+		<img id="microsoft" src="img/microsoft.png"/>
+		<img id="verschiebe" src="img/bewege.png"/>
+	</div>
+	<img id="tracking-pixel" src="http://yoc-ly.appspot.com/5747559595245568??yoc_campaign=nokia"/>
+	<!-- <div id="log"></div> -->
+</div>
+		<script>
+/*jslint browser: true, devel: true*/
+
+var overlay = function (delegate) {
+        'use strict';
+
+        var that = {},
+            el = document.getElementById('overlay'),
+            touchstart = function () {
+                delegate.did_tap_view(that);
+            },
+            show = function () {
+                el.style.pointerEvents = 'auto';
+                el.addEventListener('touchstart', touchstart);
+                el.style.opacity = 1;
+            };
+
+        that.show = show;
+        return that;
+    },
+
+    phone = function (delegate) {
+        'use strict';
+
+        var that = {},
+            el = document.getElementById('phone'),
+            screenEl = document.getElementById('screen'),
+            offsetX = 0,
+            offsetY = 0,
+
+            hide = function () {
+                el.style.display = 'none';
+            },
+
+            update_screen = function (x, y) {
+                var xOffset = 10, yOffset = 30;
+                screenEl.style.backgroundPosition = (-1 * x - xOffset) + 'px ' + (-1 * y - yOffset) + 'px';
+            },
+
+            move_camera = function (x, y) {
+                el.style.left = x + 'px';
+                el.style.top = y + 'px';
+            },
+
+            // log = function (text) {
+            //     document.getElementById('log').innerHTML = text;
+            // },
+
+            touchstart = function (event) {
+                // log(event.clientX);
+                if (window.navigator.msPointerEnabled) {
+                    offsetX = event.clientX - el.offsetLeft;
+                    offsetY = event.clientY - el.offsetTop;
+                } else {
+                    offsetX = event.touches[0].clientX - el.offsetLeft;
+                    offsetY = event.touches[0].clientY - el.offsetTop;
+                }
+
+                delegate.did_tap_view(that);
+            },
+
+            touchmove = function (event) {
+                var x, y;
+
+                if (window.navigator.msPointerEnabled) {
+                    x = event.clientX - offsetY;
+                    y = event.clientY - offsetX;
+                } else {
+                    x = event.touches[0].clientX - offsetX;
+                    y = event.touches[0].clientY - offsetY;
+                }
+
+                // log(x, y);
+
+                move_camera(x, y);
+                update_screen(x, y);
+                delegate.did_drag_view(that);
+            },
+
+            show = function () {
+
+                if (window.navigator.msPointerEnabled) {
+                    el.addEventListener('MSPointerDown', touchstart);
+                    el.addEventListener('MSPointerMove', touchmove);
+                } else {
+                    el.addEventListener('touchstart', touchstart);
+                    el.addEventListener('touchmove', touchmove);
+                }
+
+                el.style.display = 'block';
+                screenEl.style.backgroundSize = window.innerWidth + 'px';
+                update_screen(el.offsetLeft, el.offsetTop);
+            };
+
+
+
+        that.hide = hide;
+        that.show = show;
+        return that;
+    },
+
+    ad = function () {
+        'use strict';
+
+        var that = {},
+            myPhone = phone(that),
+            myOverlay = overlay(that),
+
+            did_drag_view = function () {
+                console.log('did drag it');
+            },
+
+            go_to = function (url) {
+                var a = document.createElement('a'),
+                    dispatch = document.createEvent("HTMLEvents");
+
+                a.href = url;
+                a.target = '_blank';
+
+                dispatch.initEvent('click', true, true);
+                a.dispatchEvent(dispatch);
+            },
+
+            did_tap_view = function (view) {
+                if (view === myPhone) {
+                    document.getElementById('verschiebe-container').style.height = '46px';
+                    document.getElementById('verschiebe').style.opacity = 0;
+                    setTimeout(function () {
+                        myOverlay.show();
+                    }, 3000);
+                } else if (view === myOverlay) {
+                    if (location.search === '?staging') {
+                        go_to('camera.html');
+                        return;
+                    }
+
+                    go_to('http://yoc-ly.appspot.com/5799236641751040?yoc_campaign=nokia');
+                }
+            },
+
+            start = function () {
+                myPhone.show();
+            };
+
+        that.did_tap_view = did_tap_view;
+        that.did_drag_view = did_drag_view;
+        that.start = start;
+        return that;
+    };
+
+window.addEventListener("load", function () {
+    'use strict';
+
+    setTimeout(function () {
+        window.scrollTo(0, 1);
+    }, 100);
+
+    window.addEventListener("touchstart", function (event) {
+        event.preventDefault();
+    });
+
+    window.addEventListener("MSPointerDown", function (event) {
+        event.preventDefault();
+    });
+
+    document.getElementById('phone').style.top = (window.innerHeight * 0.7) + 'px';
+
+    ad().start();
+});
+
+		</script>
+	</body>
+</html>

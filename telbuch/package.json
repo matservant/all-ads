@@ -1,0 +1,14 @@
+{
+    "name": "telbuch",
+    "version": "0.0.1",
+    "devDependencies": {
+        "mocha": "*",
+        "chai" : "*"
+    },
+    "dependencies": {
+        "mocha-phantomjs": ">= 1.7.4"
+    },
+    "scripts": {
+        "test": "mocha-phantomjs _test/runner.html"
+    }
+}

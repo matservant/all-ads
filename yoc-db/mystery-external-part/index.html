@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]>    <html class="no-js iem7"> <![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+        <meta http-equiv="cleartype" content="on">
+		
+		<!--minified styles here -->
+		<style type="text/css">
+		html,body,p,div,h1,h2,h3,a,ul,li{padding:0;margin:0}body{height:416px;margin:0 auto}#mad-wrapper{display:none}.wrapper{width:294.5px;height:203px;margin:0 auto;margin-top:70px;background:#F00;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}.logo-container{width:100.5px;height:30px;float:right}#logo{float:right;background-image:url('img/logo@2x.gif');background-size:100% 100%;width:100.5px;height:30px;margin-top:20px}#text-box{position:relative;padding-top:60px;margin-left:10px}.stage{position:absolute;opacity:1;height:auto}.stage .fade-out{opacity:0}.stage .fade-in{opacity:.9999997}#text-more{position:absolute;background-image:url(img/text5.gif);background-size:100% 100%;width:158.5px;height:16px}.box{opacity:0;height:0;overflow:hidden}#more-services-button{position:absolute;background-image:url('img/more-button@2x.gif');background-size:100% 100%;width:175.5px;height:43px;margin-top:30px}span{color:#FFF;float:left;display:block;position:absolute}#mascot{position:absolute;width:160px;height:165.5px;background-size:100% 100%;margin-top:125px;margin-left:140px;background-image:url('img/character2.gif')}.active{display:block;height:auto}.inactive{display:none;height:0}#video-lightbox{height:960px;width:100%;background:#000}#video-wrapper{height:auto;width:320px;margin:0 auto}#stop-button{text-decoration:underline;color:#FFF;font-family:Arial,Helvetica,Sans-Serif;cursor:pointer}#video-player{margin-top:40px;width:320px}
+		</style>
+	
+    </head>
+    <body>
+		<div id="mad-wrapper" class="wrapper">
+			<div class="logo-container">
+				<i id="logo"></i>
+			</div>
+			<div id="stage-2" class="stage">
+				<div id="text-box">
+					<div id="text-sequence-4" class="box">
+						<div id="text-more"></div>
+						<a href="http://bit.ly/SPwDer"><div id="more-services-button"></div></a>
+					</div>
+				</div>		
+			</div>
+			<div id="mascot-container">
+				<div id="mascot" class=""></div>
+			</div>
+		</div>
+		<div id="video-lightbox" class="active">
+			<div id="video-wrapper">
+				<video id="video-player" controls="controls">
+                    <!--<source src="video/video.webm" type="video/webm">-->
+					<source src="http://bit.ly/W590iu" type="video/mp4">
+						<!--<source src="video/video.ogv" type="video/ogg">-->       
+				</video>
+				<a id="stop-button">Schliessen</a>
+			</div>
+		</div>
+		
+		<!-- minified skript here -->
+		<script type="text/javascript">
+		(function(){function b(){if(!e&&(e=!0,g)){for(var b=0;b<g.length;b++)g[b].call(window,[]);g=[]}}function c(){if(!h){h=!0;document.addEventListener&&!f.opera&&document.addEventListener("DOMContentLoaded",b,!1);f.msie&&window==top&&function(){if(!e){try{document.documentElement.doScroll("left")}catch(a){setTimeout(arguments.callee,0);return}b()}}();f.opera&&document.addEventListener("DOMContentLoaded",function(){if(!e){for(var a=0;a<document.styleSheets.length;a++)if(document.styleSheets[a].disabled){setTimeout(arguments.callee,
+		0);return}b()}},!1);if(f.safari){var a;(function(){if(!e)if("loaded"!=document.readyState&&"complete"!=document.readyState)setTimeout(arguments.callee,0);else{if(void 0===a){for(var c=document.getElementsByTagName("link"),d=0;d<c.length;d++)"stylesheet"==c[d].getAttribute("rel")&&a++;c=document.getElementsByTagName("style");a+=c.length}document.styleSheets.length!=a?setTimeout(arguments.callee,0):b()}})()}var c=b,d=window.onload;window.onload="function"!=typeof window.onload?c:function(){d&&d();c()}}}
+		var d=window.DomReady={},a=navigator.userAgent.toLowerCase(),f={version:(a.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/)||[])[1],safari:/webkit/.test(a),opera:/opera/.test(a),msie:/msie/.test(a)&&!/opera/.test(a),mozilla:/mozilla/.test(a)&&!/(compatible|webkit)/.test(a)},h=!1,e=!1,g=[];d.ready=function(a){c();e?a.call(window,[]):g.push(function(){return a.call(window,[])})};c()})();DomReady.ready(function(){init()});function init(){showPlayer()}
+		function showPlayer(){function b(){d.style.display="none";c.style.display="block";fade("text-sequence-4","1","1","fade-in","visible")}var c=document.getElementById("mad-wrapper"),d=document.getElementById("video-lightbox"),a=document.getElementById("video-player");document.getElementById("stop-button").addEventListener("click",function(){a.pause();b()},!1);c.style.display="none";d.style.display="block";a.play();a.addEventListener("ended",function(){b()},!1)}
+		function fade(b,c,d,a,f){document.getElementById(b).style.height=c;document.getElementById(b).style.opacity=d;document.getElementById(b).style.overflow=f};
+		</script>
+
+	</body>
+</html>

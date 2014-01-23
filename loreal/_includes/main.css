@@ -1,0 +1,248 @@
+@-webkit-keyframes shake {
+	0% { -webkit-transform: translate(2px, 1px) rotate(0deg);}
+	10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -webkit-transform: translate(0px, 2px) rotate(2deg); }
+	40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -webkit-transform: translate(-1px, 2px) rotate(0deg); }
+	60% { -webkit-transform: translate(-3px, 1px) rotate(-1deg); }
+	70% { -webkit-transform: translate(2px, 1px) rotate(-2deg); }
+	80% { -webkit-transform: translate(-1px, -1px) rotate(-1deg); }
+	90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+	100% { -webkit-transform: translate(1px, -2px) rotate(1deg); }
+}
+
+@-webkit-keyframes flow {
+	0% { -webkit-transform: translate(-50px, -50px) rotate(0deg); opacity: 0; }
+	50% { -webkit-transform: translate(-100px, -100px) rotate(-2deg); opacity: 0.9; }
+	100% { -webkit-transform: translate(-150px, -150px) rotate(0deg); opacity: 0; }
+}
+
+html {
+	overflow: hidden;
+}
+
+body {
+	margin: 0;
+	height: 504px;
+	font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; 
+	overflow: hidden;
+	text-transform: uppercase;
+	color: white;
+	background-color: black;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+}
+
+#container {
+	position: absolute;
+	width: 320px;
+	height: 504px;
+	overflow: hidden;
+}
+
+#cta {
+	position: absolute;
+	top: 170px;
+	color: white;
+	font-size: 31px;
+	width: 290px;
+	pointer-events: none;
+	text-align: center;
+	padding: 15px;
+}
+
+#erasable {
+	top: 0;
+	width: 100%;
+	background-image: url(damp2-opt.jpg);
+	background-size: 100% auto;
+	opacity: 0.8;
+	-webkit-transition: all 4s ease-out;
+}
+
+#ventilator {
+	position: absolute;
+	top: 250px;
+	left: 50px;
+	opacity: 0.8;
+	pointer-events:none;
+	width: 50px;
+}
+
+@-webkit-keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.rotating {
+    -webkit-animation: rotating 0.5s linear infinite;
+}
+
+#erfrischung {
+	position: absolute;
+	top: 142.5px;
+	left: 15px;
+	font-size: 13px;
+	width: 180px;
+	padding: 0;
+	text-align: right;
+	line-height: 16px;
+}
+
+p {
+	margin: 0;
+	padding: 0;
+}
+
+#entdecke {
+	background-color: #ff6700;
+	position: absolute;
+	left: 210px;
+	top: 90px;
+	font-size: 12.5px;
+	padding: 5px;
+	width: 115px;
+	text-align: center;
+	height: 41px;
+	-webkit-transition: all 1s ease-out;
+	-webkit-transform: rotate(-25deg) translate(-100px, -150px) scale(1.5);
+}
+
+#jungs {
+	position: absolute;
+	top: 262.5px;
+	font-size: 16.5px;
+	width: 320px;
+	text-align: center;
+	padding: 13.5px 0 9px 0;
+	line-height: 16px;
+}
+
+#rafting {
+	position: absolute;
+	top: 350px;
+	left: 5px;
+	-webkit-transition: all 1s ease-out;
+	-webkit-transform: rotate(25deg) translate(-100px, -100px) scale(1.5);
+	width: 170px;
+}
+
+.appearable {
+	opacity: 0;
+	pointer-events: none;
+	-webkit-transition: opacity 1s ease-in;
+}
+
+#hydra {
+	position: absolute;
+	top: 55px;
+	left: 15px;
+	width: 180px;
+}
+
+#tippe {
+	position: absolute;
+	top: 340px;
+	left: 175px;
+	width: 125px;
+	font-size: 16.5px;
+	padding: 10px;
+}
+
+.shake {
+	-webkit-animation-duration: 5s;
+	-webkit-transform-origin:50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-name: shake;
+}
+
+.orange {
+	color: #ff6700;
+}
+
+#stream-one {
+	opacity: 0;
+}
+
+#stream-two {
+	opacity: 0;
+}
+
+.stream {
+	position: absolute;
+	top: 290px;
+	width: 320px;
+}
+
+.flow {
+	-webkit-animation-duration: 5s;
+	-webkit-transform-origin: 50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-name: flow;
+}
+
+.flow-delay {
+	-webkit-animation-delay: -2.5s;
+}
+
+#product {
+	overflow: hidden;
+	position: absolute;
+	top: -7.5px;
+	background-color: black;
+	width: 320px;
+	height: 100%;
+}
+
+#product img {
+	height: 270px;
+	position: absolute;
+	left: 150px;
+}
+
+.white {
+	color: white;
+}
+
+#jetzt-button {
+	position: absolute;
+	top: 460px;
+	left: 185px;
+	width: 110px;
+	background-color: #ff6700;
+	color: white;
+	padding: 5px;
+	font-size: 11px;
+	text-align: center;
+	border-radius: 1px;
+}
+
+@media only screen and (max-device-height: 480px) {
+	.stream {
+		top: 220px;
+	}
+
+	#rafting {
+		top: 290px;
+		left: -5px;
+	}
+
+	#jungs {
+		top: 227px;
+	}
+
+	#tippe {
+		top: 270px;
+	}
+
+	#jetzt-button {
+		top: 385px;
+	}
+}

@@ -1,0 +1,54 @@
+html {
+	overflow: hidden;
+}
+
+body {
+	margin: 0;
+	min-height: 504px;
+	font-family: DigitaldreamFatSkewNarrow;
+	color: green;
+	overflow: hidden;
+	background-size: 100% auto;
+}
+
+#container {
+	overflow: hidden;
+	position: absolute;
+	width: 320px;
+	height: 150px;
+	background-color: #F00;
+	border-radius: 8px;
+}
+
+#train {
+	opacity: 0.9;
+	position: absolute;
+	top: 70px;
+	left: 320px;
+	-webkit-transition: all 5s linear;
+}
+
+#logo {
+	width: 100px;
+	position: absolute;
+	top: 20px;
+	right: 0;
+}
+
+#cta {
+	position: absolute;
+	top: 93px;
+	left: 20px;
+	-webkit-transition: all 0.5s linear;
+	opacity: 0;
+}
+
+#cta p {
+	margin: 0;
+	color: white;
+	font-family: helvetica;
+}
+
+#cta :first-child {
+	font-weight: bold;
+}

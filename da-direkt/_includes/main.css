@@ -1,0 +1,79 @@
+body {
+	margin: 0;
+	font-family: Arial, Helvetica, Sans-Serif!important;
+	width: 320px;
+	min-height: 416px;
+}
+
+#image {
+	position: relative;
+	width: 304px;
+	top: 30px;
+	margin-left: 16px;
+}
+
+.check {
+	width: 80px;
+}
+
+#table {
+	top: 2px;
+	position: relative;
+	left: 12px;
+}
+
+.table {
+	width: 90%;
+}
+
+.table th, .table td {
+	padding: 4px 8px;
+	line-height: 15px;
+	text-align: left;
+	vertical-align: top;
+	border-top: 0px solid #dddddd;
+}
+
+#button {
+	position: relative;
+	width: 279px;
+	top: 4px;
+	left: 20px;
+	height: 60px;
+}
+
+.btn-large {
+	padding: 8px 9px;
+	font-size: 14.5px;
+	font-weight: bold;
+}
+
+.btn {
+	text-align: left;
+	line-height: 17px;
+}
+
+#neu {
+	position: relative;
+	top: -6px;
+	color: white;
+	line-height: 17px;
+	font-weight: bold;
+	font-size: 13px;
+	text-align: right;
+	margin-right: 5px;
+}
+
+#phone {
+	position: relative;
+	top: 0;
+	width: 24px;
+	right: 0;
+	float: right;
+	margin-right: 10px;
+	margin-top: -21px;
+}
+
+.orange {
+	color: #f89406;
+}

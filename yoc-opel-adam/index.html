@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" manifest="manifest.webapp">
+	<head>
+		<meta charset="utf-8">
+		<title>Opel Adam</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<link rel="stylesheet" type="text/css" href="/assets/opel.css">
+
+		<!--[if lt IE 9]>
+			<script type="text/javascript" src="/assets/html5shiv.js"></script>
+		<![endif]-->
+
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+		<link rel="shortcut icon" href="ico/favicon.png">
+	</head>
+
+	<body>
+		<a id="container" target="_blank">
+<div id="video-container">
+	<video src="/assets/ipad.mp4" type="video/mp4" controls autoplay height="215px"></video>
+</div>
+		</a>
+		<img id="pixel" border=0 width=1 height=1 style="display: none;">
+		<script>
+			var get_param = function (param) {
+				  return decodeURIComponent((new RegExp('[?|&]' + param + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+				},
+				clickURL = get_param("clickURL") || "http://ad-emea.doubleclick.net/clk;270000917;96059584;l",
+				ord = get_param("ord");
+			document.getElementById("pixel").src = "http://ad-emea.doubleclick.net/ad/N6428.1626347.NIIU.DE/B7448913.2;sz=1x1;ord=" + ord;
+			document.getElementById("container").href = clickURL;
+		</script>
+	</body>
+</html>

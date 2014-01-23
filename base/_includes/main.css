@@ -1,0 +1,17 @@
+body {
+	background-image: url(./n24.jpg);
+	background-size: 320px 568px;
+	margin: 0;
+	min-height: 480px;
+	overflow: hidden;
+}
+
+#banner {
+	position: absolute;
+}
+
+#link {
+	position: absolute;
+	width: 320px;
+	height: 50px;
+}

@@ -1,0 +1,49 @@
+body {
+	background-color: black;
+	margin: 0;
+}
+
+video {
+	width: 100%    !important;
+	margin-top: 16px;
+}
+
+#container {
+	display: block;
+	background-image: url(/assets/landscape.jpg);
+	background-repeat: no-repeat;
+	background-size: 1024px 723px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1024px;
+	height: 723px;
+}
+
+#video-container {
+	position: relative;
+	left: 323px;
+	top: 22px;
+	width: 383px;
+	height: 246px;
+	background-color: black;
+}
+
+@media only screen and (device-width: 768px) and (orientation: portrait) {
+	video {
+		margin-top: 22px;
+	}
+
+	#container {
+		background-image: url(/assets/portrait.jpg);
+		background-size: 768px 989px;
+		width: 768px;
+		height: 989px;
+	}
+
+	#video-container {
+		left: 194px;
+		top: 208px;
+		width: 383px;
+		height: 260px;
+	}
+}

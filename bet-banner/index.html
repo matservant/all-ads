@@ -1,0 +1,24 @@
+---
+layout: default
+title: Bet Banner
+---
+<div id="container">
+	<div id="left">
+		<p id="match"></p>
+		<form id="bet">	
+			<input id="radio-1" type="radio" name="bet" value="1"/>
+			<label for="radio-1"><b>1</b> – <span id="current1" class="current"></span></label>
+
+			<input id="radio-x" type="radio" name="bet" value="X"/>
+			<label for="radio-x"><b>X</b> – <span id="currentX" class="current"></span></label>
+			
+			<input id="radio-2" type="radio" name="bet" value="2"/>
+			<label for="radio-2"><b>2</b> – <span id="current2" class="current"></span></label>
+		</form>
+	</div>
+	<div id="right">
+		<label for="amount">Einsatz:</label><input id="amount" type="number"/>€<br>
+		Gewinn: <b><span id="estimate" class="estimate"></span></b><span class="estimate">€</span>
+	</div>
+	<img id="logo" src="img/bwin.png"/>
+</div>

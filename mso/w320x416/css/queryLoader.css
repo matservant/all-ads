@@ -1,0 +1,25 @@
+.QOverlay {
+	background-color: #fff;
+	z-index: 9999;
+}
+
+.QLoader {
+	background-color: #f8aa00;
+	height: 2px;
+}
+
+.QAmt {
+	color:#333333;
+	font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;
+	font-size:40px;
+	font-weight:bold;
+	line-height:50px;
+	height:50px;
+	width:100px;
+	margin:-60px 0 0 -50px;
+}
+
+.QAmtImage {
+	margin: 15px; width: 70px; height: 70px;
+	background: url(images/lowres/yaploader.gif) center no-repeat;
+}

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>L'Oréal</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="user-scalable=no, width=320" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<style type="text/css">
+@-webkit-keyframes shake {
+	0% { -webkit-transform: translate(2px, 1px) rotate(0deg);}
+	10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -webkit-transform: translate(0px, 2px) rotate(2deg); }
+	40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -webkit-transform: translate(-1px, 2px) rotate(0deg); }
+	60% { -webkit-transform: translate(-3px, 1px) rotate(-1deg); }
+	70% { -webkit-transform: translate(2px, 1px) rotate(-2deg); }
+	80% { -webkit-transform: translate(-1px, -1px) rotate(-1deg); }
+	90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+	100% { -webkit-transform: translate(1px, -2px) rotate(1deg); }
+}
+
+@-webkit-keyframes flow {
+	0% { -webkit-transform: translate(-50px, -50px) rotate(0deg); opacity: 0; }
+	50% { -webkit-transform: translate(-100px, -100px) rotate(-2deg); opacity: 0.9; }
+	100% { -webkit-transform: translate(-150px, -150px) rotate(0deg); opacity: 0; }
+}
+
+html {
+	overflow: hidden;
+}
+
+body {
+	margin: 0;
+	height: 504px;
+	font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; 
+	overflow: hidden;
+	text-transform: uppercase;
+	color: white;
+	background-color: black;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+}
+
+#container {
+	position: absolute;
+	width: 320px;
+	height: 504px;
+	overflow: hidden;
+}
+
+#cta {
+	position: absolute;
+	top: 170px;
+	color: white;
+	font-size: 31px;
+	width: 290px;
+	pointer-events: none;
+	text-align: center;
+	padding: 15px;
+}
+
+#erasable {
+	top: 0;
+	width: 100%;
+	background-image: url(damp2-opt.jpg);
+	background-size: 100% auto;
+	opacity: 0.8;
+	-webkit-transition: all 4s ease-out;
+}
+
+#ventilator {
+	position: absolute;
+	top: 250px;
+	left: 50px;
+	opacity: 0.8;
+	pointer-events:none;
+	width: 50px;
+}
+
+@-webkit-keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.rotating {
+    -webkit-animation: rotating 0.5s linear infinite;
+}
+
+#erfrischung {
+	position: absolute;
+	top: 142.5px;
+	left: 15px;
+	font-size: 13px;
+	width: 180px;
+	padding: 0;
+	text-align: right;
+	line-height: 16px;
+}
+
+p {
+	margin: 0;
+	padding: 0;
+}
+
+#entdecke {
+	background-color: #ff6700;
+	position: absolute;
+	left: 210px;
+	top: 90px;
+	font-size: 12.5px;
+	padding: 5px;
+	width: 115px;
+	text-align: center;
+	height: 41px;
+	-webkit-transition: all 1s ease-out;
+	-webkit-transform: rotate(-25deg) translate(-100px, -150px) scale(1.5);
+}
+
+#jungs {
+	position: absolute;
+	top: 262.5px;
+	font-size: 16.5px;
+	width: 320px;
+	text-align: center;
+	padding: 13.5px 0 9px 0;
+	line-height: 16px;
+}
+
+#rafting {
+	position: absolute;
+	top: 350px;
+	left: 5px;
+	-webkit-transition: all 1s ease-out;
+	-webkit-transform: rotate(25deg) translate(-100px, -100px) scale(1.5);
+	width: 170px;
+}
+
+.appearable {
+	opacity: 0;
+	pointer-events: none;
+	-webkit-transition: opacity 1s ease-in;
+}
+
+#hydra {
+	position: absolute;
+	top: 55px;
+	left: 15px;
+	width: 180px;
+}
+
+#tippe {
+	position: absolute;
+	top: 340px;
+	left: 175px;
+	width: 125px;
+	font-size: 16.5px;
+	padding: 10px;
+}
+
+.shake {
+	-webkit-animation-duration: 5s;
+	-webkit-transform-origin:50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-name: shake;
+}
+
+.orange {
+	color: #ff6700;
+}
+
+#stream-one {
+	opacity: 0;
+}
+
+#stream-two {
+	opacity: 0;
+}
+
+.stream {
+	position: absolute;
+	top: 290px;
+	width: 320px;
+}
+
+.flow {
+	-webkit-animation-duration: 5s;
+	-webkit-transform-origin: 50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-name: flow;
+}
+
+.flow-delay {
+	-webkit-animation-delay: -2.5s;
+}
+
+#product {
+	overflow: hidden;
+	position: absolute;
+	top: -7.5px;
+	background-color: black;
+	width: 320px;
+	height: 100%;
+}
+
+#product img {
+	height: 270px;
+	position: absolute;
+	left: 150px;
+}
+
+.white {
+	color: white;
+}
+
+#jetzt-button {
+	position: absolute;
+	top: 460px;
+	left: 185px;
+	width: 110px;
+	background-color: #ff6700;
+	color: white;
+	padding: 5px;
+	font-size: 11px;
+	text-align: center;
+	border-radius: 1px;
+}
+
+@media only screen and (max-device-height: 480px) {
+	.stream {
+		top: 220px;
+	}
+
+	#rafting {
+		top: 290px;
+		left: -5px;
+	}
+
+	#jungs {
+		top: 227px;
+	}
+
+	#tippe {
+		top: 270px;
+	}
+
+	#jetzt-button {
+		top: 385px;
+	}
+}
+		</style>
+	</head>
+	<body>
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-40885438-1', 'yoc-ag.github.io');
+			ga('send', 'pageview');
+		</script>
+<div id="container">
+	<canvas id="erasable" width="640" height="1136"></canvas>
+	<img id="cta" src="jetzt-fs8.png"/>
+	<img id="ventilator" class="rotating" src="vent-fs8.png"/>
+	<img id="stream-one" class="stream appearable" src="stream2-fs8.png"/>
+	<img id="stream-two" class="stream appearable" src="stream2-fs8.png"/>
+	<img id="rafting" class="appearable" src="rafting-fs8.png"/>
+</div>
+		<script>
+/*jslint browser: true, devel: true*/
+/*globals ga*/
+var erasableEl = document.getElementById("erasable"),
+    ctaEl = document.getElementById("cta"),
+    endingEl = document.getElementById("ending"),
+    ventilatorEl = document.getElementById("ventilator"),
+    raftingEl = document.getElementById("rafting"),
+    streamOneEl = document.getElementById("stream-one"),
+    streamTwoEl = document.getElementById("stream-two"),
+    containerEl = document.getElementById("container"),
+    shownEnding = false,
+
+    context = erasableEl.getContext("2d"),
+    interval,
+
+    matrix = [],
+    totalPoints = 320 * 568,
+    points = 0,
+    ratio = 0,
+    screenHeight = screen.height >= 568 ? 568 : 480,
+    containerX,
+    containerY,
+
+    didWipe = false,
+
+    pad = function (val) {
+        "use strict";
+
+        var valString = val.toString();
+
+        if (valString.length < 2) {
+            return "0" + valString;
+        }
+
+        return valString;
+    },
+
+    mark = function(x, y) {
+        "use strict";
+        var i, j;
+
+        for (i = x - 20; i < x + 20; i = i + 1) {
+            if (!matrix[i]) {
+                matrix[i] = [];
+            }
+
+            for (j = y - 20; j < y + 20; j = j + 1) {
+                if (matrix[i][j] !== true) {
+                    matrix[i][j] = true;
+                    points = points + 1;
+                    ratio = points / totalPoints;
+                }
+            }
+        }
+        erasableEl.style.opacity = 0.5 - ratio / 2;
+    },
+
+    get_coord = function (event) {
+        "use strict";
+        var x = event.touches[0].clientX - 25 - containerX,
+            y = event.touches[0].clientY - 25 - containerY;
+        return [x, y];
+    },
+
+    start_path = function (event) {
+        "use strict";
+
+        if (!didWipe) {
+            ga('send', 'event', 'wipe', 'start');
+            didWipe = true;
+        }
+
+        var coord = get_coord(event);
+        console.log(event.touches[0]);
+        event.preventDefault();
+        context.beginPath();
+        context.moveTo(coord[0], coord[1]);
+        ventilatorEl.style.left = event.touches[0].clientX - 50 - containerX + 'px';
+        ventilatorEl.style.top = event.touches[0].clientY - 50 - containerY + 'px';
+    },
+
+    continue_path = function (event) {
+        "use strict";
+        event.preventDefault();
+        var coord = get_coord(event);
+        context.lineTo(coord[0], coord[1]);
+        mark(coord[0], coord[1]);
+        context.stroke();
+        ventilatorEl.style.left = event.touches[0].clientX - 50 - containerX + 'px';
+        ventilatorEl.style.top = event.touches[0].clientY - 50 - containerY + 'px';
+    },
+
+    hide_cta = function () {
+        "use strict";
+        ctaEl.style.display = "none";
+    },
+
+
+    show_ending = function () {
+        "use strict";
+
+        if (shownEnding) {
+            return;
+        }
+
+        shownEnding = true;
+
+        hide_cta();
+
+        erasableEl.removeEventListener("touchmove", continue_path);
+        erasableEl.removeEventListener("touchmove", hide_cta);
+        erasableEl.removeEventListener("touchstart", start_path);
+        erasableEl.style.opacity = 0;
+
+        raftingEl.style["-webkit-transform"] = "rotate(0) translate(0) scale(1)";
+        raftingEl.className = raftingEl.className + " shake";
+        raftingEl.style.opacity = 1;
+
+        ventilatorEl.style.display = "none";
+
+        streamOneEl.style.opacity = 1;
+        streamOneEl.className = streamOneEl.className + " flow";
+
+        streamTwoEl.style.opacity = 1;
+        streamTwoEl.className = streamOneEl.className + " flow flow-delay";
+
+        document.body.addEventListener('touchstart', function () {
+            ga('send', 'event', 'click', 'button');
+            var a = document.createElement('a'),
+                dispatch = document.createEvent("HTMLEvents"),
+                url = 'http://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=tf&c=20&mc=click&pli=6954876&PluID=0&ord=[timestamp]&mb=1&ck=1';
+            a.href = url;
+            a.target = '_blank';
+            dispatch.initEvent('click', true, true);
+            a.dispatchEvent(dispatch);
+        });
+    },
+
+    hundredths = 0,
+
+    set_time = function () {
+        "use strict";
+
+        if (ratio > 0.4) {
+            clearInterval(interval);
+            show_ending();
+            return;
+        }
+
+        hundredths = hundredths + 1;
+    },
+
+    image = new Image();
+
+context.scale(2, 2);
+image.src = "ending-" + screenHeight + "-1x.jpg";
+image.onload = function () {
+    "use strict";
+    var pattern = context.createPattern(this, "repeat");
+    context.strokeStyle = pattern;
+};
+
+context.lineWidth = 70;
+
+window.addEventListener("touchmove", function(event) {
+    'use strict';
+    event.preventDefault();
+});
+
+window.addEventListener("load", function () {
+    "use strict";
+
+    setTimeout(function () {
+        window.scrollTo(0, 1);
+    }, 0);
+
+    console.log(screenHeight);
+    containerEl.style.height = screenHeight - 64 + "px";
+    containerX = window.innerWidth / 2 - containerEl.offsetWidth / 2;
+    containerY = (window.innerHeight / 2 - containerEl.offsetHeight / 2) < 0 ? 0 : (window.innerHeight / 2 - containerEl.offsetHeight / 2);
+
+    containerEl.style["background-image"] = "url(ending-" + screenHeight + ".jpg)";
+    containerEl.style["background-size"] = "320px " + (screenHeight - 64) + "px";
+    containerEl.style.left = containerX + "px";
+    containerEl.style.top = containerY + "px";
+    erasableEl.addEventListener("touchmove", continue_path);
+    erasableEl.addEventListener("touchmove", hide_cta);
+    erasableEl.addEventListener("touchstart", start_path);
+    interval = setInterval(set_time, 10);
+
+    setTimeout(show_ending, 6000);
+});
+
+		</script>
+	</body>
+</html>

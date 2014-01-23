@@ -1,0 +1,50 @@
+---
+layout: default
+title: DA Direkt
+---
+<div id="container">
+	<img id="image" src="img/image002.jpg"/>
+	<p id="neu">Neu: Kfz-Versicherung nach<br>Wunsch mit Mein Tarif!</p>
+	<table id="table" class="table table-condensed">
+		<tbody>
+			<tr>
+				<td>
+					<img class="check" src="img/glyphicons_150_check@2x.png"/>
+				</td>
+				<td>
+					<b>Kfz-Haftpflicht und Vollkasko<br><span class="orange">schon ab 99 € im Jahr</span></b>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<img class="check"  src="img/glyphicons_150_check@2x.png"/>
+				</td>
+				<td>
+					<b>Schnelle, unbürokratische Hilfe</b> im<br>Schadenfall
+			  	</td>
+			</tr>
+			<tr>
+				<td>
+					<img class="check" src="img/glyphicons_150_check@2x.png"/>
+				</td>
+				<td>
+					<b>Individueller Versicherungsschutz nach Wunsch:</b> So zahlen Sie nur für das, was Sie wirklich brauchen
+			  	</td>
+			</tr>
+	 	</tbody>
+	</table>
+	<button id="button" class="btn btn-large btn-warning" type="button">Jetzt kostenlos anrufen und<br>Kfz-Versicherung wechseln<img id="phone" src="img/glyphicons_139_phone@2x.png"/></button>
+	<!-- <img id="template" src="img/template.jpg"/> -->
+</div>
+<script>
+	window.addEventListener("load",function() {
+		setTimeout(function(){
+			window.scrollTo(0, 0);
+		}, 0);
+	});
+
+	document.getElementById("button").addEventListener("touchstart", function () {
+		ga('send', 'event', 'click', 'button');
+		location.href = 'tel:080078900007';
+	});
+</script>

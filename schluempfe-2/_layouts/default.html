@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>{{ page.title }}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="user-scalable=no, width=device-width" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<script src="http://code.createjs.com/preloadjs-0.4.0.min.js"></script>
+		<style type="text/css">
+{% include frames.css %}
+{% include main.css %}
+		</style>
+	</head>
+	<body>
+{{ content }}
+		<script>
+{% include main.js %}
+		</script>
+	</body>
+</html>

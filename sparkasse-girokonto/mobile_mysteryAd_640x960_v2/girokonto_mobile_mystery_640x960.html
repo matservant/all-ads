@@ -1,0 +1,423 @@
+<html>
+<head>
+<title>Girokonto</title>
+<meta name="viewport" content="user-scalable=no, width=640" />
+<style type="text/css">
+body{background-color: #000000;}
+#w-{position:absolute;top:10px; left: 10px;color:#333; font-family: Arial;}
+#bg_white{height: 960px;    overflow: hidden;    position: absolute;    width: 640px;background-color: #ffffff;top:0px;left:0px;opacity:0;}
+.text{position:absolute;top:748px; left: 24px;opacity:0;}
+#button{position:absolute;top:866px; left: 24px;opacity:0;}
+#gewinne{position:absolute;top:610px; left: 405px;opacity:0;}
+#clouds_left, #clouds_right{ height: 960px;    overflow: hidden;    position: absolute;    width: 640px;opacity:0;}
+.cloud_left{position:absolute;
+		left: 300px;
+		-moz-transform: scale(5) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+		-webkit-transform: scale(5) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        -o-transform: scale(5) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        -ms-transform: scale(5) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        transform: scale(5) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);}
+.cloud_right{position:absolute;
+		right:300px;
+		-moz-transform: scale(5) rotate(180deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+		-webkit-transform: scale(5) rotate(180deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        -o-transform: scale(5) rotate(180deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        -ms-transform: scale(5) rotate(180deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        transform: scale(5) rotate(180deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);}
+#cloud1{top:0px;}
+#cloud2{top:0px;}
+#cloud3{top:640px;}
+#cloud4{top:640px;}
+#cloud5{top:320px;}
+#cloud6{top:320px;}
+#cloud7{top:800px;}
+#cloud8{top:800px;}
+#girokonto_mystery{width:640px;height:960px;position:relative;overflow:hidden;}
+#bg{opacity:0;}
+#logo{position: absolute; left:568px; top: 873px;opacity:0;}
+#bg_red{width: 100%; height: 234px;position: absolute; left:0; top: 726px;opacity:0;background: #cc0000; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #cc0000 0%, #ff0000 82%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#cc0000), color-stop(82%,#ff0000)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  #cc0000 0%,#ff0000 82%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  #cc0000 0%,#ff0000 82%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  #cc0000 0%,#ff0000 82%); /* IE10+ */
+background: linear-gradient(135deg,  #cc0000 0%,#ff0000 82%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', endColorstr='#ff0000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+#slide_away{position:absolute;top:529px; left: 200px;opacity:0;}
+#sterntext2{top:871px; left: 249px;}
+
+
+
+
+</style>
+
+</head>
+
+<body>
+
+
+<div id="girokonto_mystery">
+
+	
+	<div id="clouds_left">
+		<div id="cloud1" class="cloud_left"><img src="images/wolke.png"></div>
+		<div id="cloud3" class="cloud_left"><img src="images/wolke.png"></div>
+		<div id="cloud5" class="cloud_left"><img src="images/wolke.png"></div>
+		<div id="cloud7" class="cloud_left"><img src="images/wolke.png"></div>
+	</div>
+	<div id="clouds_right">
+		<div id="cloud2" class="cloud_right"><img src="images/wolke.png"></div>
+		<div id="cloud4" class="cloud_right"><img src="images/wolke.png"></div>
+		<div id="cloud6" class="cloud_right"><img src="images/wolke.png"></div>
+		<div id="cloud8" class="cloud_right"><img src="images/wolke.png"></div>
+	</div>
+	
+	<div id="bg"><img src="images/bg.jpg"></div>
+	
+	
+	<div id="bg_white"></div>
+	<div id="slide_away"><img src="images/slide_away.jpg"></div>
+	<div id="bg_red"></div>
+	<div class="text" id="text0"><img src="images/text0.png"></div>
+	<div class="text" id="text3"><img src="images/text3.png"></div>
+	<div class="text" id="text4"><img src="images/text4.png"></div>
+	<div class="text" id="sterntext2"><img src="images/sterntext2.png"></div>
+	<div id="button"><img src="images/button.png"></div>
+	<div id="gewinne"><img src="images/gewinne.png"></div>
+	<div id="logo"><img src="images/logo.png"></div>
+	<div id="w-">-w-</div>
+</div>
+
+
+<script type="text/javascript">
+
+var slided_clouds=false;
+document.getElementById('cloud1').style.left='300px';
+document.getElementById('cloud2').style.right='300px';
+var slider = null; 
+var new_car = null;
+var start_time=0;
+var start_pos=0;
+var minus=40;
+var slidestart=0;
+var slider_active=false;
+var click_active=false;
+var clouds_are_out_left=false;
+var clouds_are_out_right=false;
+
+
+document.getElementById('bg_white').onmousedown = function (eve) {
+	if(slider_active){
+		//startanimation();
+		//slided_clouds=true;
+		slidestart=eve.clientX;
+	}
+}
+
+document.getElementById('bg_white').onmouseup = function (eve) {
+	//alert(slidestart+' # '+eve.clientX);
+	if(slider_active){
+		if(slidestart > eve.clientX){
+			
+			if(clouds_are_out_right){
+				startanimation();
+			}
+			else{
+				cloudsout_left();
+				clouds_are_out_left=true;
+			}
+		}
+		else{
+
+			
+			if(clouds_are_out_left){
+				startanimation();
+			}
+			else{
+				cloudsout_right();
+				clouds_are_out_right=true;
+			}
+			
+			
+		}
+		//startanimation();
+		
+		//setTimeout(function(){slided_clouds=true;},100);
+	}
+}
+
+document.getElementById('bg_white').onclick = function (eve) {
+	if(click_active==true){
+		window.location.href = "http://www.sparkasse.de/girokonto";
+	}
+}
+/*
+document.getElementById('girokonto_mystery').onclick = function (eve) {
+	if(slided_clouds){
+		window.location = "http://www.sparkasse.de/";
+	}
+}
+*/
+/*
+document.getElementById('bg_white').onclick = function (eve) {
+	console.log('click: '+eve.clientX);
+}
+*/
+
+
+
+function close_Banner(){
+	document.getElementById("girokonto_mystery").style.display='none';
+}
+
+
+function startClouds() {
+	alt = document.getElementById('clouds_left').style.opacity;
+	if(alt==''){
+		alt=0;
+	}
+	if(alt<1){
+		alt = parseFloat(alt);
+		neu = alt+0.1;
+		document.getElementById('clouds_left').style.opacity = neu;
+		document.getElementById('clouds_right').style.opacity = neu;
+		setTimeout(startClouds,50);
+	}
+	else{
+		make_white();
+		
+		setTimeout(showbutton,400);
+	}
+}
+
+function make_white() {
+	alt = document.getElementById('bg_white').style.opacity;
+	if(alt==''){
+		alt=0;
+	}
+	if(alt<1){
+		alt = parseFloat(alt);
+		neu = alt+0.1;
+		document.getElementById('bg_white').style.opacity = neu;
+		document.getElementById('bg_red').style.opacity = neu;
+		document.getElementById('logo').style.opacity = neu;
+		document.getElementById('slide_away').style.opacity = neu;
+		document.getElementById('text0').style.opacity = neu;
+		setTimeout(make_white,25);
+	}
+	else{
+		document.getElementById('bg').style.opacity=1;
+		setTimeout(slide_away,400);
+		slider_active=true;
+	}
+}
+
+
+function slide_away() {
+	alt = document.getElementById('slide_away').style.opacity;
+	var alt_left = document.getElementById('slide_away').style.left;
+	if(alt==''){
+		alt=0;
+	}
+	if(alt>1){
+		alt=1;
+	}
+	alt = parseFloat(alt);
+	alt=Math.round(alt*10);
+	if(alt>0){
+		alt=alt/10;
+		neu = alt-0.1;
+		document.getElementById('slide_away').style.opacity = neu;
+		document.getElementById('text0').style.opacity = neu;
+		document.getElementById('bg_white').style.opacity = neu;
+		if(alt_left==''){
+			alt_left='200px';
+		}
+		alt_left = parseInt(alt_left);
+		left = alt_left+10;
+		document.getElementById('slide_away').style.left =left+'px';;
+		setTimeout(slide_away,40);
+	}
+	else{
+		setTimeout(startanimation,3000, true);
+	}
+}
+
+function startanimation(timeisout){
+	
+	
+	slider_active=false;
+	console.log(timeisout);
+	if(!slided_clouds){
+		if(clouds_are_out_right && !clouds_are_out_left){
+			cloudsout_left();
+		}
+		
+		if(clouds_are_out_left && !clouds_are_out_right){
+			cloudsout_right();
+		}
+		
+		if(!clouds_are_out_left && !clouds_are_out_right){
+			cloudsout();
+		}
+		
+		
+		document.getElementById('text3').style.left='640px';
+		minus=42;
+		showText(3);
+		slided_clouds=true;
+		setTimeout(close_Banner,5500);
+		setTimeout(function(){click_active=true;},500);
+	}
+	
+}
+
+
+function cloudsout_left() {
+	console.log("cloudsout_left");
+	var alt_left = document.getElementById('cloud1').style.left;
+	alt_left = parseInt(alt_left);
+	left = alt_left-30;
+	if(left>-420){	
+		document.getElementById('cloud1').style.left =left+'px';
+		document.getElementById('cloud3').style.left =left+'px';
+		document.getElementById('cloud5').style.left =left+'px';
+		document.getElementById('cloud7').style.left =left+'px';
+		setTimeout(cloudsout_left,20);
+	}
+}
+
+function cloudsout_right() {
+	console.log("cloudsout_right");
+	var alt_left = document.getElementById('cloud2').style.right;
+	alt_left = parseInt(alt_left);
+	left = alt_left-30;
+	if(left>-420){	
+		document.getElementById('cloud2').style.right =left+'px';
+		document.getElementById('cloud4').style.right =left+'px';
+		document.getElementById('cloud6').style.right =left+'px';
+		document.getElementById('cloud8').style.right =left+'px';
+		setTimeout(cloudsout_right,20);
+	}
+}
+
+
+function cloudsout() {
+	var alt_left = document.getElementById('cloud1').style.left;
+	alt_left = parseInt(alt_left);
+	left = alt_left-30;
+	if(left>-420){	
+		document.getElementById('cloud1').style.left =left+'px';
+		document.getElementById('cloud2').style.right =left+'px';
+		document.getElementById('cloud3').style.left =left+'px';
+		document.getElementById('cloud4').style.right =left+'px';
+		document.getElementById('cloud5').style.left =left+'px';
+		document.getElementById('cloud6').style.right =left+'px';
+		document.getElementById('cloud7').style.left =left+'px';
+		document.getElementById('cloud8').style.right =left+'px';
+		setTimeout(cloudsout,20);
+	}
+}
+
+function showText(num) {
+  document.getElementById('text'+num).style.opacity = 1;
+  position= parseInt(document.getElementById('text'+num).style.left);
+  if(position>324){
+	new_pos=position-minus;
+  }
+  else{
+		if(minus>3){
+			minus=minus-3;
+		}else{
+			if(minus>=2){
+				minus=minus-1;
+			}
+		}
+		new_pos=position-minus;
+  }
+  document.getElementById('text'+num).style.left = Math.round(new_pos)+'px';
+  if(new_pos>24){
+	setTimeout(showText,30, num);
+  }
+  else{
+	
+	if(num<4){
+		setTimeout(hideText,2000, num);
+		num++;
+		document.getElementById('text'+num).style.left='640px';
+		minus=42;
+		setTimeout(showText,2000, num);
+		if(num==4){
+			setTimeout(showsternchentext,2000);
+			setTimeout(showgewinne,2500);
+		
+		}
+	}
+  }
+}
+
+function hideText(num) {
+	alt = document.getElementById('text'+num).style.opacity;
+	alt = parseFloat(alt);	
+	if(alt>0){
+		neu = alt-0.1;
+		if(alt<0.15){
+			neu = 0;
+		}
+		document.getElementById('text'+num).style.opacity = neu;
+		setTimeout(hideText,25, num);
+	}
+}
+
+
+function showbutton(){
+	alt = document.getElementById('button').style.opacity;
+	if(alt==""){alt=0;}
+	alt = parseFloat(alt);	
+	if(alt<1){
+		neu = alt+0.1;
+		document.getElementById('button').style.opacity = neu;
+		setTimeout(showbutton,25);
+	}
+}
+
+function showsternchentext(){
+	alt = document.getElementById('sterntext2').style.opacity;
+	if(alt==""){alt=0;}
+	alt = parseFloat(alt);	
+	if(alt<1){
+		neu = alt+0.1;
+		document.getElementById('sterntext2').style.opacity = neu;
+		setTimeout(showsternchentext,25);
+	}
+}
+
+function showgewinne(){
+	alt = document.getElementById('gewinne').style.opacity;
+	if(alt==""){alt=0;}
+	alt = parseFloat(alt);	
+	if(alt<1){
+		neu = alt+0.1;
+		document.getElementById('gewinne').style.opacity = neu;
+		setTimeout(showgewinne,25);
+	}
+}
+
+
+
+function reset_timer(){
+	start_time=new Date().getTime();
+	start_pos=640;
+}
+
+function easeout(t,b,c,d){return -c *(t/=d)*(t-2) + b;	}
+function easein(t,b,c,d){return c*(t/=d)*t + b;	}
+function get_position(t,b,c,d){	if ((t/=d/2) < 1) return c/2*t*t + b;	return -c/2 * ((--t)*(t-2) - 1) + b;	}
+
+window.onload = startClouds;
+
+</script>
+
+</body>
+</html>

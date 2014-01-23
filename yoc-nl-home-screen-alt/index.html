@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Nokia Lumia 920</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="user-scalable=no, width=320" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<style type="text/css">
+		html {
+			height: 100%;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+			color: red;
+			height: 100%;
+			font-weight: 300;
+			min-height: 532px;
+			width: 320px;
+		}
+
+		#background {
+			background-color: black;
+			height: 100%;
+			opacity: 0;
+			min-height: 532px;
+			-webkit-transition: opacity 1s ease-out 1100ms;
+			height: 100%;
+		}
+
+		.button {
+			background-color: #fcd32b;
+			margin-top: 10px;
+			margin-left: 10px;
+			float: left;
+			-webkit-transform-style: preserve-3d;
+			-webkit-transform: perspective(600px) rotateY(-90deg) scale(2);
+		}
+
+		.button-big {
+			width: 145px;
+			height: 145px;
+		}
+
+		.button-double {
+			width: 300px;
+			height: 145px;
+		}
+
+		.button-small {
+			width: 67.5px;
+			height: 67.5px;
+		}
+
+		.button img {
+			width: 100%;
+			height: 100%;
+		}
+
+		#buttons {
+			position: absolute;
+			top: 55px;
+			height: 476px;
+		}
+
+		#logo {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			width: 70px;
+		}
+	</style>
+</head>
+<body>
+	<div id="background"></div>
+	<div id="buttons">
+		<a href="http://bit.ly/nc-nl920-city" target="_blank"><div id="city" class="button button-big"><img src="img/city.jpg"/></div></a>
+		<a href="http://bit.ly/nc-nl920-contacts" target="_blank"><div id="friends" class="button button-big"><img src="img/contacts.jpg"/></div></a>
+		<a href="http://bit.ly/nc-nl920-store" target="_blank"><div id="store" class="button button-big"><img src="img/store.jpg"/></div></a>
+		<a href="http://bit.ly/nc-nl920-bus" target="_blank"><div id="bus" class="button button-small"><img src="img/bus.jpg"/></div></a>
+		<a href="http://bit.ly/nc-nl920-compass" target="_blank"><div id="compass" class="button button-small"><img src="img/compass.jpg"/></div></a>
+		<a href="http://bit.ly/nc-nl920-music" target="_blank"><div id="music" class="button button-small"><img src="img/music.jpg"/></div></a>
+		<a href="http://bit.ly/nc-nl920" target="_blank"><div id="email" class="button button-small"><img src="img/explorer.jpg"/></div></a>
+		<a href="http://bit.ly/nc-nl920-fotos" target="_blank"><div id="email" class="button button-double"><img src="img/fotos.jpg"/></div></a>
+	</div>
+	<img id="logo" src="img/logo.png"/>
+	<p style="position: absolute; top: -10px; left: 40px; color: white;">-w-</p>
+	<script>
+		/*jslint browser: true, devel: true*/
+
+		function loadTrackingPixel() {
+			'use strict';
+
+			var el = document.createElement("img");
+			el.src = '#';
+			document.body.appendChild(el);
+		}
+
+		function fadeBackground () {
+			'use strict';
+
+			document.getElementById('background').style.opacity = '1';
+		}
+
+		function presentButton(button, delay) {
+			'use strict';
+
+			button.style['-webkit-transition'] = 'all 0.5s ease-out ' + delay + 'ms';
+			button.style['-webkit-transform'] = 'perspective(600px) rotateY(0deg) scale(1)';
+			button.style.opacity = 1;
+		}
+
+		function animate() {
+			fadeBackground();
+
+			buttons = document.getElementsByClassName('button');
+
+			var i;
+			for (i = 0; i < buttons.length; i++) {
+				presentButton(buttons[i], i*100);
+			};
+		}
+
+		function hideAddressBar() {
+			'use strict';
+
+			setTimeout(function () {
+				window.scrollTo(0, 1);
+				animate();
+			}, 100);
+		}
+
+		window.onload = hideAddressBar;
+	</script>
+</body>
