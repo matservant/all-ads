@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% include head.html %}
+        <meta property="og:type" content="website"/>
+    </head>
+    <body>
+        <div class="container-narrow">
+            {% include masthead.html %}
+            <hr>
+            <div class="row-fluid marketing">
+                <div class="offset1 span10">            
+                   {{ content }}
+               </div>
+            </div>
+        {% include footer.html %}
+        </div> <!-- /container -->
+        <script src="/js/jquery.js"></script>
+        <script src="/js/hyphenator.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <!-- by Quico Moya -->
+    </body>
+</html>

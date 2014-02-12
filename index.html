@@ -1,0 +1,21 @@
+---
+title: Ads
+layout: default
+index: yes
+---
+{% for post in paginator.posts %}
+
+</br>
+<div class="row">
+
+    <div class="thumbnail">
+      <iframe width="320" height="436" src="ads/intersnack" frameBorder="0"></iframe>
+      <div class="caption">
+        <h3>{{ post.title }}</h3>
+        {{ post.content }}
+        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div>
+    </div>
+</div>
+
+{% endfor %}
