@@ -11,6 +11,7 @@ var overlay = function (delegate) {
             show = function () {
                 el.style.pointerEvents = 'auto';
                 el.addEventListener('touchstart', touchstart);
+                el.addEventListener('mousedown', touchstart);
                 el.style.opacity = 1;
             };
 
@@ -26,6 +27,7 @@ var overlay = function (delegate) {
             screenEl = document.getElementById('screen'),
             offsetX = 0,
             offsetY = 0,
+            isDragging = false,
 
             hide = function () {
                 el.style.display = 'none';
@@ -47,16 +49,41 @@ var overlay = function (delegate) {
                 delegate.did_tap_view(that);
             },
 
+            mouseup = function () {
+                isDragging = false;
+            },
+
+            mousedown = function (event) {
+                offsetX = event.clientX - el.offsetLeft;
+                offsetY = event.clientY - el.offsetTop;
+                isDragging = true;
+                delegate.did_tap_view(that);
+            },
+
+            move = function (x, y) {
+                move_camera(x, y);
+                update_screen(x, y);
+            },
+
+            mousemove = function (event) {
+                if (!isDragging) {
+                    return;
+                }
+                var x = event.clientX - offsetX,
+                    y = event.clientY - offsetY;
+                move(x, y);
+            },
+
             touchmove = function (event) {
                 var x = event.touches[0].clientX - offsetX,
                     y = event.touches[0].clientY - offsetY;
-
-                move_camera(x, y);
-                update_screen(x, y);
-                delegate.did_drag_view(that);
+                move(x, y);
             },
 
             show = function () {
+                el.addEventListener('mousedown', mousedown);
+                el.addEventListener('mousemove', mousemove);
+                el.addEventListener('mouseup', mouseup);
                 el.addEventListener('touchstart', touchstart);
                 el.addEventListener('touchmove', touchmove);
 
@@ -64,8 +91,6 @@ var overlay = function (delegate) {
                 screenEl.style.backgroundSize = window.innerWidth + 'px';
                 update_screen(el.offsetLeft, el.offsetTop);
             };
-
-
 
         that.hide = hide;
         that.show = show;
@@ -79,16 +104,12 @@ var overlay = function (delegate) {
             myPhone = phone(that),
             myOverlay = overlay(that),
 
-            did_drag_view = function () {
-                console.log('did drag it');
-            },
-
             go_to = function (url) {
                 var a = document.createElement('a'),
-                    dispatch = document.createEvent("HTMLEvents");
+                    dispatch = document.createEvent('HTMLEvents');
 
                 a.href = url;
-                a.target = '_blank';
+                a.target = '_self';
 
                 dispatch.initEvent('click', true, true);
                 a.dispatchEvent(dispatch);
@@ -100,7 +121,7 @@ var overlay = function (delegate) {
                         myOverlay.show();
                     }, 3000);
                 } else if (view === myOverlay) {
-                    go_to('http://yoc-ly.appspot.com/25001?yoc_campaign=nl925');
+                    go_to('camera.html');
                 }
             },
 
@@ -109,19 +130,22 @@ var overlay = function (delegate) {
             };
 
         that.did_tap_view = did_tap_view;
-        that.did_drag_view = did_drag_view;
         that.start = start;
         return that;
     };
 
-window.addEventListener("load", function () {
+window.addEventListener('load', function () {
     'use strict';
 
     setTimeout(function () {
         window.scrollTo(0, 1);
     }, 100);
 
-    window.addEventListener("touchstart", function (event) {
+    window.addEventListener('click', function (event) {
+        event.preventDefault();
+    });
+
+    window.addEventListener('click', function (event) {
         event.preventDefault();
     });
 

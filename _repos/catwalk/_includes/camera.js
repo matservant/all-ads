@@ -148,7 +148,7 @@ var retinaFactor = window.devicePixelRatio,
 
                 logo.src = 'img/windows.png';
                 logo.addEventListener('load', function (event) {
-                    el.getContext("2d").drawImage(event.target, 8, 8, 320 * size, 75 * size);
+                    el.getContext('2d').drawImage(event.target, 8, 8, 320 * size, 75 * size);
                 });
             },
 
@@ -179,11 +179,11 @@ var retinaFactor = window.devicePixelRatio,
 
             load_file = function (file) {
                 var image = new MegaPixImage(file),
-                    context = el.getContext("2d");
+                    context = el.getContext('2d');
 
                 EXIF.getData(file, function () {
                     context.save();
-                    var orientation = EXIF.getTag(this, "Orientation");
+                    var orientation = EXIF.getTag(this, 'Orientation');
                     image.render(el, { height: el.clientHeight * 4, orientation: orientation });
                     context.restore();
                 });
@@ -219,6 +219,7 @@ var retinaFactor = window.devicePixelRatio,
 
             show = function () {
                 el.addEventListener('touchstart', touchstart);
+                el.addEventListener('click', touchstart);
             };
 
         that.set_enabled = set_enabled;
@@ -247,6 +248,7 @@ var retinaFactor = window.devicePixelRatio,
 
             show = function () {
                 el.addEventListener('touchstart', touchstart);
+                el.addEventListener('click', touchstart);
             };
 
         that.set_enabled = set_enabled;
@@ -291,7 +293,7 @@ var retinaFactor = window.devicePixelRatio,
                 data.append('message', 'Die lichtstärkste Kamera aller Smartphones. Das Windows Phone Nokia Lumia 925 hat mein Foto deutlich verbessert!');
                 data.append('access_token', response.authResponse.accessToken);
 
-                req.open("POST", "https://graph.facebook.com/me/photos");
+                req.open('POST', 'https://graph.facebook.com/me/photos');
                 req.send(data);
                 req.addEventListener('load', did_finish_posting_to_facebook);
             },
@@ -363,11 +365,18 @@ var retinaFactor = window.devicePixelRatio,
         that.did_press_button = did_press_button;
         that.start = start;
         return that;
+    },
+
+    preventDefault = function () {
+        'use strict';
+        if (event.target.id !== 'camera-input' && event.target.id !== 'facebook') {
+            event.preventDefault();
+        }
     };
 
 window.ad = ad();
 
-window.addEventListener("load", function () {
+window.addEventListener('load', function () {
     'use strict';
 
     setTimeout(function () {
@@ -377,11 +386,8 @@ window.addEventListener("load", function () {
     document.getElementById('wrapper').style.minHeight = window.innerHeight + 'px';
     document.getElementById('picture').height = document.getElementById('phone-vert').clientHeight * retinaFactor + 100;
 
-    window.addEventListener("touchstart", function (event) {
-        if (event.target.id !== 'camera-input' && event.target.id !== 'facebook') {
-            event.preventDefault();
-        }
-    });
+    window.addEventListener('touchstart', preventDefault);
+    window.addEventListener('mousedown', preventDefault);
 
     window.ad.start();
 });
