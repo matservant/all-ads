@@ -1,1 +1,13 @@
-Footer
+<div class="footer">
+    {% if paginator.next_page %}
+        <a class="pull-left" href="{{ paginator.next_page_path }}">« Older posts</a>
+    {% endif %}
+
+    {% if paginator.previous_page %}
+        {% if paginator.previous_page == 1 %}
+        <a class="pull-right" href="/">Newer posts »</a>
+        {% else %}
+        <a class="pull-right" href="{{ paginator.previous_page_path }}">Newer posts »</a>
+        {% endif %}
+    {% endif %}
+</div>
